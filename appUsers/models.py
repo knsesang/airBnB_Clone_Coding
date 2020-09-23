@@ -12,4 +12,25 @@ class clsUser(AbstractUser):
     #   1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
     #   2) Quit, and let me add a default in models.py
 
-    varBio = models.TextField(default="")
+
+    #   null=True 는 DB 용, 
+    #   blank=True 는  form용. 누락시 필수값이라고 나타남
+    varAvartar = models.ImageField(null=True, blank=True)
+    varBio = models.TextField(default="", blank=True)
+
+    GENDER_MALE = "male"
+    GENDER_FEMALE = "female"
+    GENDER_OTHER = "other"
+
+    GENDER_CHOICES = [
+        (GENDER_MALE, "male"),
+        (GENDER_FEMALE, "female"),
+        (GENDER_OTHER, "other"),
+    ]
+
+    varGender = models.CharField(
+        choices=GENDER_CHOICES, 
+        default=GENDER_MALE, 
+        max_length = 10, 
+        null=True, blank=True)
+    
