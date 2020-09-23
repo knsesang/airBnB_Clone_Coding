@@ -47,9 +47,11 @@ PROJECT_APPS = [
  "appUsers.apps.clsUsersConfig",
 ]
 
+#   외뷰 제작 앱
+THIRD_PARTY_APPS = []
 
 #   장고가 인식하는 앱 = 기본앱 + 사용자 생성앱
-INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
+INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
