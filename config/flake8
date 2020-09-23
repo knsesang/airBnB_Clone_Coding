@@ -1,0 +1,17 @@
+[flake8]
+;W191:indentation contains tabs
+;E101:indentation contains mixed spaces and tabs
+;E126:continuation line over-indented for hanging indent
+;E131:continuation line unaligned for hanging indent
+;E203:whitespace before ':'
+;E226:missing whitespace around arithmetic operator
+;E231:missing whitespace after ':'
+;E261:at least two spaces before inline comment
+;E265:block comment should start with '# '
+;E302:expected 2 blank lines, found 0
+;E701:multiple statements on one line (colon)
+;C901: ... is too complex (nn)
+ignore = W191,E101,E126,E131,E203,E226,E231,E261,E265,E301,E302,E701,C901,E501
+max-line-length = 160
+exclude = tests/*
+max-complexity = 10

@@ -1,0 +1,11 @@
+{}
+"python.linting.flake8Enabled": true,
+"python.linting.pylintEnabled": false,
+"python.linting.enabled": true,
+"python.formatting.provider":"black",
+"python.linting.flake8Args": ["--max-line-length"],
+"cornflakes.linter.executablePath": "path/to/venvs/myvenv/bin/flake8",
+"python.languageServer": "Microsoft",
+"python.pythonPath":
+"C:\\Users\\knses\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+}
