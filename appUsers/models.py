@@ -32,5 +32,45 @@ class clsUser(AbstractUser):
         choices=GENDER_CHOICES, 
         default=GENDER_MALE, 
         max_length = 10, 
-        null=True, blank=True)
+        null=True, 
+        blank=True)
+
+    varBirthDate = models.DateTimeField(null=True,  blank=True)
+
+    LANGUAGE_KOREAN = "korean"
+    LANGUAGE_ENGLISH = "english"
+    LANGUAGE_OTHER = "other"
+
+    LANGUAGE_CHOICES = [
+        (LANGUAGE_KOREAN, "korean"),
+        (LANGUAGE_ENGLISH, "english"),
+        (LANGUAGE_OTHER, "other"),
+    ]
+
+    varLanguage = models.CharField(
+        choices=LANGUAGE_CHOICES, 
+        default=LANGUAGE_KOREAN, 
+        max_length = 10, 
+        null=True, 
+        blank=True)
+
+
+    CURRENCY_USD = "usd"
+    CURRENCY_WON = "krw"
+    CURRENCY_OTHER = "other"
+
+    CURRENCY_CHOICES = [
+        (CURRENCY_USD, "usd"),
+        (CURRENCY_WON, "krw"),
+        (CURRENCY_OTHER, "other"),
+    ]
+
+    varCurrency = models.CharField(
+        choices=CURRENCY_CHOICES, 
+        default=CURRENCY_WON, 
+        max_length = 10, 
+        null=True, 
+        blank=True)
+
+    varSuperhost = models.BooleanField(default=False)
     
