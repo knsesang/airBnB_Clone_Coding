@@ -76,3 +76,4 @@ class clsUser(AbstractUser):
 
     varEmail = models.EmailField(null=True, blank=True)
     
+

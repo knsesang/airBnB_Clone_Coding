@@ -3,6 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from . import models
 
 
+
 # Register your models here.
 
 # admin.site.register(models.clsUser, clsCustomUserAdmin) = @admin.register(models.clsUser) 같은 표현 방식 
