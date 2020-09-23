@@ -15,7 +15,7 @@ class clsUser(AbstractUser):
 
     #   null=True 는 DB 용, 
     #   blank=True 는  form용. 누락시 필수값이라고 나타남
-    varAvartar = models.ImageField(null=True, blank=True)
+    varAvatar = models.ImageField(null=True, blank=True)
     varBio = models.TextField(default="", blank=True)
 
     GENDER_MALE = "male"
@@ -35,7 +35,7 @@ class clsUser(AbstractUser):
         null=True, 
         blank=True)
 
-    varBirthDate = models.DateTimeField(null=True,  blank=True)
+    varBirthdate = models.DateTimeField(null=True,  blank=True)
 
     LANGUAGE_KOREAN = "korean"
     LANGUAGE_ENGLISH = "english"
