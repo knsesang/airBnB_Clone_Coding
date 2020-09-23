@@ -73,4 +73,6 @@ class clsUser(AbstractUser):
         blank=True)
 
     varSuperhost = models.BooleanField(default=False)
+
+    varEmail = models.EmailField(null=True, blank=True)
     
