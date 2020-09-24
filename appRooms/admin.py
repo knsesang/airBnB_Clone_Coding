@@ -6,7 +6,9 @@ from . import models
 
 
 #   어드민 패널에 + 가 생긴다ㄴ
-@admin.register(models.clsRoomType)
+@admin.register(
+    models.clsRoomType, models.clsAmenity, models.clsFacility, models.clsHouseRule
+)
 class clsItemAdmin(admin.ModelAdmin):
     pass
 

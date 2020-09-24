@@ -21,6 +21,18 @@ class clsRoomType(clsAbstractItem):
     pass
 
 
+class clsAmenity(clsAbstractItem):
+    pass
+
+
+class clsFacility(clsAbstractItem):
+    pass
+
+
+class clsHouseRule(clsAbstractItem):
+    pass
+
+
 # Create your models here.
 class clsRoom(core_models.TimeStampedModel):
     varName = models.CharField(max_length=140)
@@ -37,7 +49,10 @@ class clsRoom(core_models.TimeStampedModel):
     varInstant_book = models.BooleanField(default=False)
     varHost = models.ForeignKey(user_models.clsUser, on_delete=models.CASCADE)
 
-    varRoom_type = models.ManyToManyField(clsRoomType, blank=True)
+    varRoom_type = models.ForeignKey(clsRoomType, on_delete=models.SET_NULL, null=True)
+    varAmenities = models.ManyToManyField(clsAmenity, blank=True)
+    varFacilities = models.ManyToManyField(clsFacility, blank=True)
+    varHouseRules = models.ManyToManyField(clsHouseRule, blank=True)
 
     def __str__(self):
         return self.varName
