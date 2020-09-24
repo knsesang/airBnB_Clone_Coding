@@ -1,8 +1,25 @@
+from appCore.models import TimeStampedModel
 from django.db import models
+from django.db.models.deletion import SET_DEFAULT
 from django_countries.fields import CountryField
 from appCore import models as core_models
 
 from appUsers import models as user_models
+
+
+class clsAbstractItem(core_models.TimeStampedModel):
+    varName = models.CharField(max_length=80)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.varName
+
+
+class clsRoomType(clsAbstractItem):
+    pass
+
 
 # Create your models here.
 class clsRoom(core_models.TimeStampedModel):
@@ -11,7 +28,7 @@ class clsRoom(core_models.TimeStampedModel):
     varCountry = CountryField()
     varCity = models.CharField(max_length=80)
     varPrice = models.IntegerField(default=0)
-    varAddress = models.CharField(max_length=140,null=True, blank=True )
+    varAddress = models.CharField(max_length=140, null=True, blank=True)
     varGuests = models.IntegerField(default=0)
     varBeds = models.IntegerField(default=0)
     varBaths = models.IntegerField(default=0)
@@ -20,3 +37,7 @@ class clsRoom(core_models.TimeStampedModel):
     varInstant_book = models.BooleanField(default=False)
     varHost = models.ForeignKey(user_models.clsUser, on_delete=models.CASCADE)
 
+    varRoom_type = models.ManyToManyField(clsRoomType, blank=True)
+
+    def __str__(self):
+        return self.varName
