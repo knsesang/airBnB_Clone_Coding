@@ -50,7 +50,9 @@ PROJECT_APPS = [
 ]
 
 #   외뷰 제작 앱
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    "django_countries",
+    ]
 
 #   장고가 인식하는 앱 = 기본앱 + 사용자 생성앱
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
@@ -96,6 +98,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        #'NAME': '/home/webRoot/django31_airBnB/db.sqlite3',
     }
 }
 
