@@ -16,3 +16,8 @@ class clsItemAdmin(admin.ModelAdmin):
 @admin.register(models.clsRoom)
 class clsRoomAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(models.clsPhoto)
+class clsPhotoAdmin(admin.ModelAdmin):
+    pass
