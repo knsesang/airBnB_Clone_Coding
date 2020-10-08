@@ -83,7 +83,9 @@ class clsRoom(core_models.TimeStampedModel):
     varInstant_book = models.BooleanField(default=False)
 
     #   varHost = models.ForeignKey(user_models.clsUser, on_delete=models.CASCADE)
-    varHost = models.ForeignKey("appUsers.clsUser", on_delete=models.CASCADE)
+    varHost = models.ForeignKey(
+        "appUsers.clsUser", related_name="relRooms", on_delete=models.CASCADE
+    )
 
     varRoom_type = models.ForeignKey(
         "clsRoomType", on_delete=models.SET_NULL, null=True

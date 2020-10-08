@@ -110,3 +110,50 @@ djAdmin
 
 <QuerySet [<clsRoom: 테스트 방>, <clsRoom: 예쁜방>]>
 
+
+# userpick.clsreview_set.all()
+
+<QuerySet [<clsReview: 첫번째 리뷰 - 테스트 방>]>
+
+
+# userpic.relRooms.all()
+
+<QuerySet [<clsRoom: 테스트 방>, <clsRoom: 예쁜방>]>
+
+
+# from appRooms.models import clsRoom
+# roompick = clsRoom.objects.get(id=1)
+
+# roompick
+<clsRoom: 테스트 방>
+
+# roompick = clsRoom.objects.get(pk=1)
+# roompick
+
+<clsRoom: 테스트 방>
+
+
+# clsRoom.clsreview_set
+
+<django.db.models.fields.related_descriptors.create_reverse_many_to_one_manager.<locals>.RelatedManager object at 0x000001DA59642EE0>
+
+
+# roompick.clsreview_set.all()
+
+<QuerySet [<clsReview: 첫번째 리뷰 - 테스트 방>]>
+
+
+# roompick.varAmenities
+
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x000001DA5968FF40>
+
+
+# roompick.varAmenities.all()
+<QuerySet [<clsAmenity: shower>]>
+
+
+
+# startswith=clsUser.objects.filter(username__startswith='djA')
+# startswith
+
+<QuerySet [<User: djAdmin>]>
