@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class ApplistsConfig(AppConfig):
-    name = 'appLists'
+class clsListsConfig(AppConfig):
+    name = "appLists"
