@@ -76,6 +76,7 @@ class clsRoom(core_models.TimeStampedModel):
     varAddress = models.CharField(max_length=140, null=True, blank=True)
     varGuests = models.IntegerField(default=0)
     varBeds = models.IntegerField(default=0)
+    varBedrooms = models.IntegerField(default=0)
     varBaths = models.IntegerField(default=0)
     varCheck_in = models.TimeField()
     varCheck_out = models.TimeField()
@@ -89,7 +90,7 @@ class clsRoom(core_models.TimeStampedModel):
     )
     varAmenities = models.ManyToManyField("clsAmenity", blank=True)
     varFacilities = models.ManyToManyField("clsFacility", blank=True)
-    varHouseRules = models.ManyToManyField("clsHouseRule", blank=True)
+    varHouse_rules = models.ManyToManyField("clsHouseRule", blank=True)
 
     def __str__(self):
         return self.varName
