@@ -50,6 +50,7 @@ PROJECT_APPS = [
     "appReviews.apps.clsReviewsConfig",
     "appReservations.apps.clsReservationsConfig",
     "appLists.apps.clsListsConfig",
+    "appConversations.apps.clsConversationsConfig",
 ]
 
 #   외뷰 제작 앱
