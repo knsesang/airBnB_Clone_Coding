@@ -124,7 +124,7 @@ class clsRoomAdmin(admin.ModelAdmin):
         "varHouse_rules",
     )
 
-    #   Romm 별로 Amenity 갯수 구하는 함수
+    #   Room 별로 Amenity 갯수 구하는 함수
     #   obj : 현재 row
     def def_CountAmenities(self, obj):
 
@@ -134,7 +134,9 @@ class clsRoomAdmin(admin.ModelAdmin):
         print(obj.varAmenities.all())
         #   <QuerySet [<clsAmenity: wifi>, <clsAmenity: shower>]>
 
-        return
+        #   amenity 갯수 반환
+        return obj.varAmenities.count()
+        #   <QuerySet [<clsAmenity: wifi>, <clsAmenity: shower>]>
 
     #   short_description : 컬럼의 이름을 바꾼다
     def_CountAmenities.short_description = "Amenity Count"

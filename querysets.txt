@@ -1,0 +1,112 @@
+
+****************************************
+리눅스에서는
+***************************************
+# python3 manage.py shell
+
+
+***************************************
+윈도우즈에서는
+***************************************
+> pipenv shell
+> python manage.py shell
+
+
+# from appUsers.models import clsUser
+# clsUser
+
+<class 'appUsers.models.clsUser'>
+
+
+
+****************************************
+dir : class 안의 names list를 리턴
+****************************************
+# dir(clsUser)
+
+['CURRENCY_CHOICES', 'CURRENCY_OTHER', 'CURRENCY_USD', 'CURRENCY_WON', 'DoesNotExist', 'EMAIL_FIELD', 'GENDER_CHOICES', 'GENDER_FEMALE', 'GENDER_MALE', 'GENDER_OTHER', 'LANGUAGE_CHOICES', 'LANGUAGE_ENGLISH', 'LANGUAGE_KOREAN', 'LANGUAGE_OTHER', 'Meta', 'MultipleObjectsReturned', 'REQUIRED_FIELDS', 'USERNAME_FIELD', '__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getstate__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_check_column_name_clashes', '_check_constraints', '_check_field_name_clashes', '_check_fields', '_check_id_field', '_check_index_together', '_check_indexes', '_check_local_fields', '_check_long_column_names', '_check_m2m_through_same_relationship', '_check_managers', '_check_model', '_check_model_name_db_lookup_clashes', '_check_ordering', '_check_property_name_related_field_accessor_clashes', '_check_single_primary_key', '_check_swappable', '_check_unique_together', '_do_insert', '_do_update', '_get_FIELD_display', '_get_next_or_previous_by_FIELD', '_get_next_or_previous_in_order', '_get_pk_val', '_get_unique_checks', '_legacy_get_session_auth_hash', '_meta', '_password', '_perform_date_checks', '_perform_unique_checks', '_save_parents', '_save_table', '_set_pk_val', 'check', 'check_password', 'clean', 'clean_fields', 'clsconversation_set', 'clslist_set', 'clsmessage_set', 'clsreservation_set', 'clsreview_set', 'clsroom_set', 'date_error_message', 'date_joined', 'delete', 'email', 'email_user', 'first_name', 'from_db', 'full_clean', 'get_all_permissions', 'get_deferred_fields', 'get_email_field_name', 'get_full_name', 'get_group_permissions', 'get_next_by_date_joined', 'get_previous_by_date_joined', 'get_session_auth_hash', 'get_short_name', 'get_user_permissions', 'get_username', 'get_varCurrency_display', 'get_varGender_display', 'get_varLanguage_display', 'groups', 'has_module_perms', 'has_perm', 'has_perms', 'has_usable_password', 'id', 'is_active', 'is_anonymous', 'is_authenticated', 'is_staff', 'is_superuser', 'last_login', 'last_name', 'logentry_set', 'natural_key', 'normalize_username', 'objects', 'password', 'pk', 'prepare_database_save', 'refresh_from_db', 'save', 'save_base', 'serializable_value', 'set_password', 'set_unusable_password', 'unique_error_message', 'user_permissions', 'username', 'username_validator', 'validate_unique', 'varAvatar', 'varBio', 'varBirthdate', 'varCurrency', 'varEmail', 'varGender', 'varLanguage', 'varSuperhost']
+
+
+
+****************************************
+vars : __dict__, dictionary 또는 class 리스트안의 나타내는것을 리턴
+****************************************
+# vars(clsUser)    
+
+mappingproxy({'__module__': 'appUsers.models', 'GENDER_MALE': 'male', 'GENDER_FEMALE': 'female', 'GENDER_OTHER': 'other', 'GENDER_CHOICES': [('male', 'male'), ('female', 'female'), ('other', 'other')], 'LANGUAGE_KOREAN': 'korean', 'LANGUAGE_ENGLISH': 'english', 'LANGUAGE_OTHER': 'other', 'LANGUAGE_CHOICES': [('korean', 'korean'), ('english', 'english'), ('other', 'other')], 'CURRENCY_USD': 'usd', 'CURRENCY_WON': 'krw', 'CURRENCY_OTHER': 'other', 'CURRENCY_CHOICES': [('usd', 'usd'), ('krw', 'krw'), ('other', 'other')], '__doc__': 'clsUser(id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, varAvatar, varBio, varGender, varBirthdate, varLanguage, varCurrency, varSuperhost, varEmail)', '_meta': <Options for clsUser>, 'DoesNotExist': <class 'appUsers.models.clsUser.DoesNotExist'>, 'MultipleObjectsReturned': <class 'appUsers.models.clsUser.MultipleObjectsReturned'>, 'varAvatar': <django.db.models.fields.files.ImageFileDescriptor object at 0x000002C2E3CD93A0>, 'varBio': <django.db.models.query_utils.DeferredAttribute object at 0x000002C2E3CD9370>, 'varGender': <django.db.models.query_utils.DeferredAttribute object at 0x000002C2E3CD9490>, 'get_varGender_display': functools.partialmethod(<function Model._get_FIELD_display at 0x000002C2E39275E0>, , field=<django.db.models.fields.CharField: varGender>), 'varBirthdate': <django.db.models.query_utils.DeferredAttribute object at 0x000002C2E3CD9610>, 'varLanguage': <django.db.models.query_utils.DeferredAttribute object at 0x000002C2E3CD96A0>, 'get_varLanguage_display': functools.partialmethod(<function Model._get_FIELD_display at 0x000002C2E39275E0>, , field=<django.db.models.fields.CharField: varLanguage>), 'varCurrency': <django.db.models.query_utils.DeferredAttribute object at 0x000002C2E3CD9790>, 'get_varCurrency_display': functools.partialmethod(<function Model._get_FIELD_display at 0x000002C2E39275E0>, , field=<django.db.models.fields.CharField: varCurrency>), 'varSuperhost': <django.db.models.query_utils.DeferredAttribute object at 0x000002C2E3CD9850>, 'varEmail': <django.db.models.query_utils.DeferredAttribute object at 0x000002C2E3CD98B0>, 'get_next_by_date_joined': functools.partialmethod(<function Model._get_next_or_previous_by_FIELD at 0x000002C2E3927670>, , field=<django.db.models.fields.DateTimeField: date_joined>, is_next=True), 'get_previous_by_date_joined': functools.partialmethod(<function Model._get_next_or_previous_by_FIELD at 0x000002C2E3927670>, , field=<django.db.models.fields.DateTimeField: date_joined>, is_next=False), 'groups': <django.db.models.fields.related_descriptors.ManyToManyDescriptor object at 0x000002C2E3CD2040>, 'user_permissions': <django.db.models.fields.related_descriptors.ManyToManyDescriptor object at 0x000002C2E3D80880>, 'id': <django.db.models.query_utils.DeferredAttribute object at 0x000002C2E3D80B80>, 'logentry_set': <django.db.models.fields.related_descriptors.ReverseManyToOneDescriptor object at 0x000002C2E3D80D60>, 'clsroom_set': <django.db.models.fields.related_descriptors.ReverseManyToOneDescriptor object at 0x000002C2E43979A0>, 'clsreview_set': <django.db.models.fields.related_descriptors.ReverseManyToOneDescriptor object at 0x000002C2E4397B50>, 'clsreservation_set': <django.db.models.fields.related_descriptors.ReverseManyToOneDescriptor object at 0x000002C2E4391220>, 'clslist_set': <django.db.models.fields.related_descriptors.ReverseManyToOneDescriptor object at 0x000002C2E43A6D30>, 'clsconversation_set': <django.db.models.fields.related_descriptors.ManyToManyDescriptor object at 0x000002C2E43B10D0>, 'clsmessage_set': <django.db.models.fields.related_descriptors.ReverseManyToOneDescriptor object at 0x000002C2E43A6820>})
+
+
+
+
+# clsUser.objects
+
+<django.contrib.auth.models.UserManager object at 0x000002C2E3D80CD0>
+
+
+
+
+*********************
+모든 유저 정보
+object list
+*********************
+# clsUser.objects.all()   
+
+<QuerySet [<User: djAdmin>, <User: djUser>]>
+
+
+
+
+# all_user = clsUser.objects.all()  
+# all_user.filter(varSuperhost=True)
+
+<QuerySet [<User: djAdmin>]>
+
+
+
+*****************************
+username 은 기본생성 필드
+**********************************
+# userpick = clsUser.objects.get(username="djAdmin")
+
+
+
+*********************************
+print 명령어 안해도 출력됨
+*********************************
+# userpick
+
+<User: djAdmin>
+
+
+# print(userpick)
+
+djAdmin
+
+
+
+
+# vars(userpick)
+
+{'_state': <django.db.models.base.ModelState object at 0x000002C2E413F370>, 'id': 1, 'password': 'pbkdf2_sha256$216000$lLZbkoKYkrtr$pFD+qXzpPPoCnzyfZEehm+DCGVG1iYGA8ynNd4LwtLE=', 'last_login': datetime.datetime(2020, 10, 8, 11, 14, tzinfo=<UTC>), 'is_superuser': True, 'username': 'djAdmin', 'first_name': '', 'last_name': '', 'email': 'knsesang2013@naver.com', 'is_staff': True, 'is_active': True, 'date_joined': datetime.datetime(2020, 9, 24, 5, 42, 40, tzinfo=<UTC>), 'varAvatar': '', 'varBio': '', 'varGender': 'male', 'varBirthdate': None, 'varLanguage': 'korean', 'varCurrency': 'krw', 'varSuperhost': True, 'varEmail': None}
+
+
+
+
+#dir(userpick)
+
+['CURRENCY_CHOICES', 'CURRENCY_OTHER', 'CURRENCY_USD', 'CURRENCY_WON', 'DoesNotExist', 'EMAIL_FIELD', 'GENDER_CHOICES', 'GENDER_FEMALE', 'GENDER_MALE', 'GENDER_OTHER', 'LANGUAGE_CHOICES', 'LANGUAGE_ENGLISH', 'LANGUAGE_KOREAN', 'LANGUAGE_OTHER', 'Meta', 'MultipleObjectsReturned', 'REQUIRED_FIELDS', 'USERNAME_FIELD', '__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getstate__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_check_column_name_clashes', '_check_constraints', '_check_field_name_clashes', '_check_fields', '_check_id_field', '_check_index_together', '_check_indexes', '_check_local_fields', '_check_long_column_names', '_check_m2m_through_same_relationship', '_check_managers', '_check_model', '_check_model_name_db_lookup_clashes', '_check_ordering', '_check_property_name_related_field_accessor_clashes', '_check_single_primary_key', '_check_swappable', '_check_unique_together', '_do_insert', '_do_update', '_get_FIELD_display', '_get_next_or_previous_by_FIELD', '_get_next_or_previous_in_order', '_get_pk_val', '_get_unique_checks', '_legacy_get_session_auth_hash', '_meta', '_password', '_perform_date_checks', '_perform_unique_checks', '_save_parents', '_save_table', '_set_pk_val', '_state', 'check', 'check_password', 'clean', 'clean_fields', 'clsconversation_set', 'clslist_set', 'clsmessage_set', 'clsreservation_set', 'clsreview_set', 'clsroom_set', 'date_error_message', 'date_joined', 'delete', 'email', 'email_user', 'first_name', 'from_db', 'full_clean', 'get_all_permissions', 'get_deferred_fields', 'get_email_field_name', 'get_full_name', 'get_group_permissions', 'get_next_by_date_joined', 'get_previous_by_date_joined', 'get_session_auth_hash', 'get_short_name', 'get_user_permissions', 'get_username', 'get_varCurrency_display', 'get_varGender_display', 'get_varLanguage_display', 'groups', 'has_module_perms', 'has_perm', 'has_perms', 'has_usable_password', 'id', 'is_active', 'is_anonymous', 'is_authenticated', 'is_staff', 'is_superuser', 'last_login', 'last_name', 'logentry_set', 'natural_key', 'normalize_username', 'objects', 'password', 'pk', 'prepare_database_save', 'refresh_from_db', 'save', 'save_base', 'serializable_value', 'set_password', 'set_unusable_password', 'unique_error_message', 'user_permissions', 'username', 'username_validator', 'validate_unique', 'varAvatar', 'varBio', 'varBirthdate', 'varCurrency', 'varEmail', 'varGender', 'varLanguage', 'varSuperhost']
+
+
+
+
+
+# userpick.clsroom_set
+
+<django.db.models.fields.related_descriptors.create_reverse_many_to_one_manager.<locals>.RelatedManager object at 0x000002C2E4805C70>
+
+
+
+# userpick.clsroom_set.all()
+
+<QuerySet [<clsRoom: 테스트 방>, <clsRoom: 예쁜방>]>
+
