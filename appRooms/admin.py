@@ -11,7 +11,16 @@ from . import models
     models.clsRoomType, models.clsAmenity, models.clsFacility, models.clsHouseRule
 )
 class clsItemAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = (
+        "varName",
+        "def_Usedby",
+    )
+
+    def def_Usedby(self, obj):
+        return obj.relRooms.count()
+
+    def_Usedby.short_description = "Used By"
 
 
 @admin.register(models.clsRoom)
@@ -84,6 +93,7 @@ class clsRoomAdmin(admin.ModelAdmin):
         "varCheck_out",
         "varInstant_book",
         "def_CountAmenities",
+        "def_CountPhotos",
     )
 
     #   정렬
@@ -138,8 +148,12 @@ class clsRoomAdmin(admin.ModelAdmin):
         return obj.varAmenities.count()
         #   <QuerySet [<clsAmenity: wifi>, <clsAmenity: shower>]>
 
+    def def_CountPhotos(self, obj):
+        return obj.relPhotos.count()
+
     #   short_description : 컬럼의 이름을 바꾼다
     def_CountAmenities.short_description = "Amenity Count"
+    def_CountPhotos.short_description = "Photo Count"
 
 
 @admin.register(models.clsPhoto)
