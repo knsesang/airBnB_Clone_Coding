@@ -60,7 +60,9 @@ class clsPhoto(core_models.TimeStampedModel):
     #   clsRoom 이 아래에 있으므로 실행 오류가 생길수 있다
     #   varRoom = models.ForeignKey(clsRoom, on_delete=models.CASCADE)
     #   클래스 이름을 string 으로 지정하면 회피 가능ㄴ
-    varRoom = models.ForeignKey("clsRoom", on_delete=models.CASCADE)
+    varRoom = models.ForeignKey(
+        "clsRoom", related_name="relPhotos", on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.varCaption
@@ -88,11 +90,17 @@ class clsRoom(core_models.TimeStampedModel):
     )
 
     varRoom_type = models.ForeignKey(
-        "clsRoomType", on_delete=models.SET_NULL, null=True
+        "clsRoomType", related_name="relRooms", on_delete=models.SET_NULL, null=True
     )
-    varAmenities = models.ManyToManyField("clsAmenity", blank=True)
-    varFacilities = models.ManyToManyField("clsFacility", blank=True)
-    varHouse_rules = models.ManyToManyField("clsHouseRule", blank=True)
+    varAmenities = models.ManyToManyField(
+        "clsAmenity", related_name="relRooms", blank=True
+    )
+    varFacilities = models.ManyToManyField(
+        "clsFacility", related_name="relRooms", blank=True
+    )
+    varHouse_rules = models.ManyToManyField(
+        "clsHouseRule", related_name="relRooms", blank=True
+    )
 
     def __str__(self):
         return self.varName
