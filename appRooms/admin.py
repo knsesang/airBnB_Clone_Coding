@@ -3,6 +3,12 @@ from . import models
 
 
 # Register your models here.
+#   어드민 패널에 + 가 생긴다
+@admin.register(models.clsRoomType)
+class clsItemAdmin(admin.ModelAdmin):
+    pass
+
+
 @admin.register(models.clsRoom)
 class clsRoomAdmin(admin.ModelAdmin):
     pass

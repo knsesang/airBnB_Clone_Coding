@@ -3,6 +3,21 @@ from django_countries.fields import CountryField
 from appCore import models as core_models
 from appUsers import models as user_models
 
+
+class clsAbstractItem(core_models.TimeStampedModel):
+    varName = models.CharField(max_length=80)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.varName
+
+
+class clsRoomType(clsAbstractItem):
+    pass
+
+
 # Create your models here.
 class clsRoom(core_models.TimeStampedModel):
     varName = models.CharField(null=True, blank=True, max_length=140)
@@ -21,3 +36,8 @@ class clsRoom(core_models.TimeStampedModel):
     varHost = models.ForeignKey(
         user_models.clsUser, null=True, on_delete=models.CASCADE
     )
+
+    varRoom_type = models.ManyToManyField(clsRoomType, blank=True)
+
+    def __str__(self):
+        return self.varName
