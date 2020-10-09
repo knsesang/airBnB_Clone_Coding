@@ -45,6 +45,8 @@ DJANGO_APPS = [
 #   사용자 생성 앱
 PROJECT_APPS = [
     "appUsers.apps.clsUsersConfig",
+    "appRooms.apps.clsRoomsConfig",
+    "appCore.apps.clsCoreConfig",
 ]
 
 #   외뷰 제작 앱
