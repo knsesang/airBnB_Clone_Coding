@@ -5,6 +5,7 @@ from appUsers import models as user_models
 
 
 class clsAbstractItem(core_models.TimeStampedModel):
+
     varName = models.CharField(max_length=80)
 
     class Meta:
@@ -15,6 +16,18 @@ class clsAbstractItem(core_models.TimeStampedModel):
 
 
 class clsRoomType(clsAbstractItem):
+    pass
+
+
+class clsAmenity(clsAbstractItem):
+    pass
+
+
+class clsFacility(clsAbstractItem):
+    pass
+
+
+class clsHouseRule(clsAbstractItem):
     pass
 
 
@@ -37,7 +50,12 @@ class clsRoom(core_models.TimeStampedModel):
         user_models.clsUser, null=True, on_delete=models.CASCADE
     )
 
-    varRoom_type = models.ManyToManyField(clsRoomType, blank=True)
+    varRoom_type = models.ForeignKey(
+        clsRoomType, on_delete=models.SET_NULL, null=True, blank=True
+    )
+    varAmenities = models.ManyToManyField(clsAmenity, blank=True)
+    varFacilities = models.ManyToManyField(clsFacility, blank=True)
+    varHouse_rules = models.ManyToManyField(clsHouseRule, blank=True)
 
     def __str__(self):
         return self.varName
