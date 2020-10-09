@@ -15,15 +15,40 @@ class clsUser(AbstractUser):
     #   null=True 는 DB 용,
     #   blank=True 는  form용. 누락시 필수값이라고 나타남
 
+    #   choice : 앞은 DB에, 뒤는 호면 노출용 값
+
+    # 파이썬 list, tuple 차이 : https://itholic.github.io/python-list-tuple/
+    # () [] {}의 차이와 사용해야 할 곳 : https://hashcode.co.kr/questions/4118/%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%99%80-%EC%82%AC%EC%9A%A9%ED%95%B4%EC%95%BC-%ED%95%A0-%EA%B3%B3
+
     GENDER_MALE = "male"
     GENDER_FEMALE = "female"
     GENDER_OTHER = "other"
 
-    GENDER_CHOICES = [
+    GENDER_CHOICES = (
         (GENDER_MALE, "male"),
         (GENDER_FEMALE, "female"),
         (GENDER_OTHER, "other"),
-    ]
+    )
+
+    LANGUAGE_KOREAN = "kor"
+    LANGUAGE_ENGLISH = "eng"
+    LANGUAGE_OTHER = "other"
+
+    LANGUAGE_CHOICES = (
+        (LANGUAGE_KOREAN, "korean"),
+        (LANGUAGE_ENGLISH, "english"),
+        (LANGUAGE_OTHER, "other"),
+    )
+
+    CURRENCY_USD = "usd"
+    CURRENCY_KRW = "krw"
+    CURRENCY_OTHER = "other"
+
+    CURRENCY_CHOICES = (
+        (CURRENCY_USD, "dollar"),
+        (CURRENCY_KRW, "won"),
+        (CURRENCY_OTHER, "other"),
+    )
 
     varGender = models.CharField(
         choices=GENDER_CHOICES,
@@ -32,5 +57,24 @@ class clsUser(AbstractUser):
         null=True,
         blank=True,
     )
+
+    varLanguage = models.CharField(
+        choices=LANGUAGE_CHOICES,
+        default=LANGUAGE_KOREAN,
+        max_length=10,
+        null=True,
+        blank=True,
+    )
+
+    varCurrency = models.CharField(
+        choices=CURRENCY_CHOICES,
+        default=CURRENCY_KRW,
+        max_length=10,
+        null=True,
+        blank=True,
+    )
+
     varAvatar = models.ImageField(null=True, blank=True)
     varBio = models.TextField(default="", blank=True)
+    varBirthdate = models.DateTimeField(null=True, blank=True)
+    varSuperhost = models.BooleanField(default=False)

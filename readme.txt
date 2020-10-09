@@ -10,4 +10,5 @@ varBio, varCity
 def_count
 relRoom
 
-# 3-6 강의 마친후 sqlite3.db 파일을 삭제후 다시 마이그레이션 한다.
+# 3-3 : syncdb 실행 :  no such column 오류 발생
+# 3-6 : 강의 마친후 sqlite3.db 파일을 삭제후 다시 마이그레이션 한다.
