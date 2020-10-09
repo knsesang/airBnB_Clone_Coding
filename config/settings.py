@@ -44,7 +44,7 @@ DJANGO_APPS = [
 
 #   사용자 생성 앱
 PROJECT_APPS = [
- 
+ "appUsers.apps.clsUsersConfig",
 ]
 
 #   장고가 인식하는 앱 = 기본앱 + 사용자 생성앱
@@ -162,3 +162,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+#   장고에서 쓰는 유저모델을 사용하지 않겠다
+AUTH_USER_MODEL = "appUsers.clsUser"
