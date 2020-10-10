@@ -107,9 +107,20 @@ class clsRoom(core_models.TimeStampedModel):
         all_reviews = self.relReviews.all()
         #   print(self.relReviews.all())
 
-        all_ratings = []
-        for review in all_reviews:
-            print(review.def_Rating_Average())
-            all_ratings.append(review.def_Rating_Average())
+        #   all_ratings = []
+        #   for review in all_reviews:
+        #       print(review.def_Rating_Average())
 
-        return 0
+        #   게시판 글 인용
+        #   만약에 사용자가 방을 먼저 등록하고, 리뷰가 하나도 없다면 all_ratings=0가 됩니다.
+        #   그러면 아래 코드에서 그러면 len(all_reviews)는 0임으로 ZeroDivisionError를 발생시킵니다.
+        #   해결책은 예외처리 구문으로 해당 DivideByZero를 감싸면 됩니다.
+        try:
+            all_ratings = 0
+            for review in all_reviews:
+                all_ratings = all_ratings + review.def_Rating_Average()
+
+            return all_ratings / len(all_reviews)
+
+        except ZeroDivisionError:
+            return 0
