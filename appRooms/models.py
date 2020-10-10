@@ -16,19 +16,49 @@ class clsAbstractItem(core_models.TimeStampedModel):
 
 
 class clsRoomType(clsAbstractItem):
-    pass
+    class Meta:
+        #   verbose_name_plural : 자동복수형 전환을 방지 ( clsRoomTypes X )
+        verbose_name = "Room Type"
+
+        #   생성된 날짜 순대로 정렬
+        #   ordering = ["-varCreated"]
+
+        #   ordering = ["-varName"]     역순
+
+        ordering = ["varName"]
 
 
 class clsAmenity(clsAbstractItem):
-    pass
+    class Meta:
+        #   verbose_name_plural : 자동복수형 전환을 방지 ( clsAmenitys X )
+        verbose_name_plural = "Amenities"
 
 
 class clsFacility(clsAbstractItem):
-    pass
+    class Meta:
+        #   verbose_name_plural : 자동복수형 전환을 방지 ( clsFacilitys X )
+        verbose_name_plural = "Facilities"
 
 
 class clsHouseRule(clsAbstractItem):
-    pass
+    class Meta:
+        #   verbose_name : 자동 소문자 전환을 방지 ( House rule X )
+        verbose_name = "House Rule"
+
+
+class clsPhoto(core_models.TimeStampedModel):
+    varCaption = models.CharField(max_length=100)
+    varFile = models.ImageField()
+
+    #   파이썬은 위에서 아래로 실행한다.
+    #   clsRoom 이 아래에 있으므로 실행 오류가 생길수 있다
+    #   varRoom = models.ForeignKey(clsRoom, on_delete=models.CASCADE) 오류발생
+
+    #   클래스 이름을 string 으로 지정하면 회피 가능ㄴ
+    varRoom = models.ForeignKey("clsRoom", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.varCaption
 
 
 # Create your models here.
@@ -46,16 +76,14 @@ class clsRoom(core_models.TimeStampedModel):
     varCheck_in = models.TimeField(null=True)
     varCheck_out = models.TimeField(null=True)
     varInstant_book = models.BooleanField(default=False)
-    varHost = models.ForeignKey(
-        user_models.clsUser, null=True, on_delete=models.CASCADE
-    )
+    varHost = models.ForeignKey("appUsers.clsUser", null=True, on_delete=models.CASCADE)
 
     varRoom_type = models.ForeignKey(
-        clsRoomType, on_delete=models.SET_NULL, null=True, blank=True
+        "clsRoomType", on_delete=models.SET_NULL, null=True, blank=True
     )
-    varAmenities = models.ManyToManyField(clsAmenity, blank=True)
-    varFacilities = models.ManyToManyField(clsFacility, blank=True)
-    varHouse_rules = models.ManyToManyField(clsHouseRule, blank=True)
+    varAmenities = models.ManyToManyField("clsAmenity", blank=True)
+    varFacilities = models.ManyToManyField("clsFacility", blank=True)
+    varHouse_rules = models.ManyToManyField("clsHouseRule", blank=True)
 
     def __str__(self):
         return self.varName
