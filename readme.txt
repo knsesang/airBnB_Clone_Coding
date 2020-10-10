@@ -1,6 +1,10 @@
-***참조 
+*** 참조 
 https://nomadcoders.co/airbnb-clone/
 linux 에서는 python3, 윈도우즈에서는 python
+
+*** 쿼리분석기
+https://www.electronjs.org/apps/sqlectron
+sqlite  부터해서 지원되는 DB 많음
 
 *** 아이디
 djAdmin / **spdlqj
@@ -35,3 +39,7 @@ python3 manage.py migrate appReservations
 *** 5-2 : no such table
 python3 manage.py makemigrations appLists
 python3 manage.py migrate appLists
+
+*** 5-3 : no such table
+python3 manage.py makemigrations appConversations
+python3 manage.py migrate appConversations
