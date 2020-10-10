@@ -15,3 +15,8 @@ class clsList(core_models.TimeStampedModel):
 
     def __str__(self):
         return self.varName
+
+    def def_Count_Rooms(self):
+        return self.varRooms.count()
+
+    def_Count_Rooms.short_descriptions = "room갯수"
