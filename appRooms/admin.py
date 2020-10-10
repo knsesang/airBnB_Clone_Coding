@@ -8,7 +8,16 @@ from . import models
     models.clsRoomType, models.clsAmenity, models.clsFacility, models.clsHouseRule
 )
 class clsItemAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = (
+        "varName",
+        "def_Usedby",
+    )
+
+    def def_Usedby(self, obj):
+        return obj.relRooms.count()
+
+    def_Usedby.short_description = "Used By"
 
 
 @admin.register(models.clsRoom)
@@ -83,6 +92,7 @@ class clsRoomAdmin(admin.ModelAdmin):
         "varCheck_out",
         "varInstant_book",
         "def_Count_Amenities",
+        "def_Count_Photos",
     )
 
     #   정렬
@@ -139,6 +149,12 @@ class clsRoomAdmin(admin.ModelAdmin):
 
     #   short_description : 컬럼의 이름을 바꾼다
     def_Count_Amenities.short_description = "Amenity갯수"
+
+    def def_Count_Photos(self, obj):
+        return obj.relPhotos.count()
+
+    #   short_description : 컬럼의 이름을 바꾼다
+    def_Count_Photos.short_description = "Photo갯수"
 
 
 @admin.register(models.clsPhoto)
