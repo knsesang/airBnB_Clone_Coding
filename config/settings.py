@@ -47,6 +47,7 @@ PROJECT_APPS = [
     "appUsers.apps.clsUsersConfig",
     "appRooms.apps.clsRoomsConfig",
     "appCore.apps.clsCoreConfig",
+    "appReviews.apps.clsReviewsConfig",
 ]
 
 #   외뷰 제작 앱
