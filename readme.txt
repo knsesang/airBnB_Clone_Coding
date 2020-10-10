@@ -9,6 +9,7 @@ sqlite  부터해서 지원되는 DB 많음
 *** 아이디
 djAdmin / **spdlqj
 djUser / **spdlqj
+djGuest / **spdlqj
 
 ***명명규칙
 동일단어에서 오는 혼동을 막기 위해서
