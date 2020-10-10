@@ -6,8 +6,12 @@ from appCore import models as core_models
 class clsList(core_models.TimeStampedModel):
 
     varName = models.CharField(max_length=80, null=True)
-    varUser = models.ForeignKey("appUsers.clsUser", on_delete=models.CASCADE)
-    varRooms = models.ManyToManyField("appRooms.clsRoom", blank=True)
+    varUser = models.ForeignKey(
+        "appUsers.clsUser", related_name="relLists", on_delete=models.CASCADE
+    )
+    varRooms = models.ManyToManyField(
+        "appRooms.clsRoom", related_name="relLists", blank=True
+    )
 
     def __str__(self):
         return self.varName

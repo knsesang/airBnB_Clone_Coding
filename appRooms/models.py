@@ -76,7 +76,9 @@ class clsRoom(core_models.TimeStampedModel):
     varCheck_in = models.TimeField(null=True)
     varCheck_out = models.TimeField(null=True)
     varInstant_book = models.BooleanField(default=False)
-    varHost = models.ForeignKey("appUsers.clsUser", null=True, on_delete=models.CASCADE)
+    varHost = models.ForeignKey(
+        "appUsers.clsUser", related_name="relRooms", null=True, on_delete=models.CASCADE
+    )
 
     varRoom_type = models.ForeignKey(
         "clsRoomType", on_delete=models.SET_NULL, null=True, blank=True
