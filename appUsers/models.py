@@ -74,7 +74,7 @@ class clsUser(AbstractUser):
         blank=True,
     )
 
-    varAvatar = models.ImageField(null=True, blank=True)
+    varAvatar = models.ImageField(null=True, blank=True, upload_to="avatars")
     varBio = models.TextField(default="", blank=True)
     varBirthdate = models.DateTimeField(null=True, blank=True)
     varSuperhost = models.BooleanField(default=False)

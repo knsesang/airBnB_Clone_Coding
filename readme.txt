@@ -44,3 +44,8 @@ python3 manage.py migrate appLists
 *** 5-3 : no such table
 python3 manage.py makemigrations appConversations
 python3 manage.py migrate appConversations
+
+*** 파이썬 3.4부터는 os.path.join() 대신에 pathlib  사용
+path = os.path.join(BASE_DIR, 'uploads')
+↓
+path = BASE_DIR / 'uploads'

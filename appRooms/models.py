@@ -48,7 +48,7 @@ class clsHouseRule(clsAbstractItem):
 
 class clsPhoto(core_models.TimeStampedModel):
     varCaption = models.CharField(max_length=100)
-    varFile = models.ImageField()
+    varFile = models.ImageField(upload_to="room_photos")
 
     #   파이썬은 위에서 아래로 실행한다.
     #   clsRoom 이 아래에 있으므로 실행 오류가 생길수 있다

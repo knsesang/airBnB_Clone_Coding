@@ -16,6 +16,10 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 
+#   print(BASE_DIR)
+#   /home/webRoot/django31_airBnB
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -178,3 +182,6 @@ STATIC_URL = "/static/"
 
 #   장고에서 쓰는 유저모델을 사용하지 않겠다
 AUTH_USER_MODEL = "appUsers.clsUser"
+
+#   BASE_DIR : /home/webRoot/django31_airBnB
+MEDIA_ROOT = BASE_DIR / "uploads"
