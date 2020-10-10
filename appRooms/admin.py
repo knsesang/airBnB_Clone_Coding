@@ -82,8 +82,19 @@ class clsRoomAdmin(admin.ModelAdmin):
         "varCheck_in",
         "varCheck_out",
         "varInstant_book",
+        "def_Count_Amenities",
     )
 
+    #   정렬
+    """
+    ordering = (
+        "varName",
+        "varPrice",
+        "varBedrooms",
+    )
+    """
+
+    # 필터, 빠른 선택
     list_filter = (
         "varInstant_book",
         "varHost__varSuperhost",
@@ -113,6 +124,21 @@ class clsRoomAdmin(admin.ModelAdmin):
         "varFacilities",
         "varHouse_rules",
     )
+
+    #   Romm 별로 Amenity 갯수 구하는 함수
+    #   obj : 현재 row
+    def def_Count_Amenities(self, obj):
+
+        #   print(obj)  #   방이름을 불러온다
+        #   예쁜방
+
+        #   print(obj.varAmenities.all())
+        #   <QuerySet [<clsAmenity: wifi>, <clsAmenity: shower>]>
+
+        return obj.varAmenities.count()
+
+    #   short_description : 컬럼의 이름을 바꾼다
+    def_Count_Amenities.short_description = "Amenity갯수"
 
 
 @admin.register(models.clsPhoto)
