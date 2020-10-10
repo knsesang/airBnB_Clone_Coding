@@ -23,8 +23,8 @@ class clsReservation(core_models.TimeStampedModel):
     varCheck_in = models.DateField(null=True)
     varCheck_out = models.DateField(null=True)
 
-    varGuest = models.ForeignKey("appUsers.clsUser", on_delete=models.CASCADE)
-    varRoom = models.ForeignKey("appRooms.clsRoom", on_delete=models.CASCADE)
+    varGuest = models.ForeignKey("appUsers.clsUser",  related_name="relReservations", on_delete=models.CASCADE)
+    varRoom = models.ForeignKey("appRooms.clsRoom", related_name="relReservations", on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.varRoom}-{self.varCheck_in}"

@@ -7,7 +7,7 @@ from appCore import models as core_models
 class clsConversation(core_models.TimeStampedModel):
 
     #   Participants : 참가자
-    varParticipants = models.ManyToManyField("appUsers.clsUser", blank=True)
+    varParticipants = models.ManyToManyField("appUsers.clsUser", related_name="clsConverstations", blank=True)
 
     def __str__(self):
         return str(self.varCreated)
@@ -16,8 +16,8 @@ class clsConversation(core_models.TimeStampedModel):
 class clsMessage(core_models.TimeStampedModel):
 
     varMessage = models.TextField()
-    varUser = models.ForeignKey("appUsers.clsUser", on_delete=models.CASCADE)
-    varConversation = models.ForeignKey("clsConversation", on_delete=models.CASCADE)
+    varUser = models.ForeignKey("appUsers.clsUser",related_name="relMessages", on_delete=models.CASCADE)
+    varConversation = models.ForeignKey("clsConversation",related_name="relMessages",  on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.varUser} says : {self.varMessage}"

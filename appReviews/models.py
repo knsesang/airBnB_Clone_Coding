@@ -14,8 +14,8 @@ class clsReview(core_models.TimeStampedModel):
     varValue = models.IntegerField(default=0)
 
     #   리뷰를 쓰는 사람
-    varUser = models.ForeignKey("appUsers.clsUser", on_delete=models.CASCADE)
-    varRoom = models.ForeignKey("appRooms.clsRoom", on_delete=models.CASCADE)
+    varUser = models.ForeignKey("appUsers.clsUser", related_name="relReviews", on_delete=models.CASCADE)
+    varRoom = models.ForeignKey("appRooms.clsRoom",  related_name="relReviews", on_delete=models.CASCADE)
 
     def __str__(self):
 
