@@ -185,3 +185,5 @@ AUTH_USER_MODEL = "appUsers.clsUser"
 
 #   BASE_DIR : /home/webRoot/django31_airBnB
 MEDIA_ROOT = BASE_DIR / "uploads"
+
+MEDDIA_URL = "/media/"
