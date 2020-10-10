@@ -1,6 +1,10 @@
 from django.contrib import admin
 from . import models
 
+#   썸네일 표시를 위해서 사용
+#   보안을 위해서 태그 자동변환되는것 회피
+from django.utils.html import mark_safe
+
 
 # Register your models here.
 #   어드민 패널에 + 가 생긴다
@@ -160,4 +164,20 @@ class clsRoomAdmin(admin.ModelAdmin):
 
 @admin.register(models.clsPhoto)
 class clsPhotoAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = (
+        "__str__",
+        "def_Get_Thumbnale",
+    )
+
+    def def_Get_Thumbnale(self, obj):
+        #   print(dir(obj.varFile))
+
+        #   print(obj.varFile.path)     #   /home/webRoot/django31_airBnB/uploads/room_photos/hotels.jpg
+        #   print(obj.varFile.url)      #   /room_photos/hotels.jpg
+        #   print(obj.varFile.width)    #   318
+        #   print(obj.varFile.height)   #   159
+
+        return mark_safe(f'<img width="50px" src="{obj.varFile.url}" />')
+
+    def_Get_Thumbnale.short_description = "썸네일"
