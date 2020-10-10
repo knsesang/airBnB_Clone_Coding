@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class AppreservationsConfig(AppConfig):
+class clsReservationsConfig(AppConfig):
     name = 'appReservations'

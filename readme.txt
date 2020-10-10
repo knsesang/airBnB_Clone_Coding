@@ -16,6 +16,10 @@ relRoom
 
 # 3-3 : no such column 오류 : syncdb 실행 
 # 3-6 : no such table : 일괄 마이그레이션이 아니라 개별 마이그레이션 해준다
-
 # python3 manage.py makemigrations appRooms
 # python3 manage.py migrate appRooms
+
+
+# 5-0 : no such table
+python3 manage.py makemigrations appReservations
+python3 manage.py migrate appReservations
