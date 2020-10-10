@@ -14,8 +14,12 @@ class clsReview(core_models.TimeStampedModel):
     varValue = models.IntegerField(default=0)
 
     #   리뷰를 쓰는 사람
-    varUser = models.ForeignKey("appUsers.clsUser", related_name="relReviews", on_delete=models.CASCADE)
-    varRoom = models.ForeignKey("appRooms.clsRoom",  related_name="relReviews", on_delete=models.CASCADE)
+    varUser = models.ForeignKey(
+        "appUsers.clsUser", related_name="relReviews", on_delete=models.CASCADE
+    )
+    varRoom = models.ForeignKey(
+        "appRooms.clsRoom", related_name="relReviews", on_delete=models.CASCADE
+    )
 
     def __str__(self):
 
@@ -35,3 +39,21 @@ class clsReview(core_models.TimeStampedModel):
         #   방주인 이메일
         #   return self.varRoom.varHost.varEmail
         #   return self.varRoom.varHost.email
+
+    #   방의 평점은 어드민에서만 보여지지 않으므로
+    #   model 에 함수를 추가한다
+    def def_Rating_Average(self):
+        avg = (
+            self.varAccuracy
+            + self.varCommunication
+            + self.varCleanliness
+            + self.varLocation
+            + self.varCheck_in
+            + self.varValue
+        ) / 6
+
+        #   1.6666666666666667
+        #   소숫점 2자리 올림
+        return round(avg, 2)
+
+    def_Rating_Average.short_description = "리뷰평균"

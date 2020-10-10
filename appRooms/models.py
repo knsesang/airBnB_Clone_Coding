@@ -55,7 +55,9 @@ class clsPhoto(core_models.TimeStampedModel):
     #   varRoom = models.ForeignKey(clsRoom, on_delete=models.CASCADE) 오류발생
 
     #   클래스 이름을 string 으로 지정하면 회피 가능ㄴ
-    varRoom = models.ForeignKey("clsRoom",  related_name="relPhotos", on_delete=models.CASCADE)
+    varRoom = models.ForeignKey(
+        "clsRoom", related_name="relPhotos", on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.varCaption
@@ -81,11 +83,33 @@ class clsRoom(core_models.TimeStampedModel):
     )
 
     varRoom_type = models.ForeignKey(
-        "clsRoomType", related_name="relRooms", on_delete=models.SET_NULL, null=True, blank=True
+        "clsRoomType",
+        related_name="relRooms",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
     )
-    varAmenities = models.ManyToManyField("clsAmenity",related_name="relRooms", blank=True)
-    varFacilities = models.ManyToManyField("clsFacility", related_name="relRooms",blank=True)
-    varHouse_rules = models.ManyToManyField("clsHouseRule", related_name="relRooms",blank=True)
+    varAmenities = models.ManyToManyField(
+        "clsAmenity", related_name="relRooms", blank=True
+    )
+    varFacilities = models.ManyToManyField(
+        "clsFacility", related_name="relRooms", blank=True
+    )
+    varHouse_rules = models.ManyToManyField(
+        "clsHouseRule", related_name="relRooms", blank=True
+    )
 
     def __str__(self):
         return self.varName
+
+    #   방의 리뷰 평균
+    def def_Total_Rating(self):
+        all_reviews = self.relReviews.all()
+        #   print(self.relReviews.all())
+
+        all_ratings = []
+        for review in all_reviews:
+            print(review.def_Rating_Average())
+            all_ratings.append(review.def_Rating_Average())
+
+        return 0

@@ -5,4 +5,8 @@ from . import models
 # Register your models here.
 @admin.register(models.clsReview)
 class clsReviewAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = (
+        "__str__",
+        "def_Rating_Average",
+    )

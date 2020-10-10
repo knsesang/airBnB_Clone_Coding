@@ -28,18 +28,17 @@ class clsCustomUserAdmin(UserAdmin):
         ),
     )
 
-    #   email 이메일은 장고 기본 모델에서 불러옴
-    list_display = (
-        "username",
-        "email",
-        "varGender",
-        "varLanguage",
-        "varCurrency",
-        "varSuperhost",
-    )
+    list_filter = UserAdmin.list_filter + ("varSuperhost",)
 
-    list_filter = (
+    list_display = (
+        "username",  #   장고 기본 모델에서 불러옴
+        "first_name",  #   장고 기본 모델에서 불러옴
+        "last_name",  #   장고 기본 모델에서 불러옴
+        "email",  #   장고 기본 모델에서 불러옴
+        "is_active",  #   장고 기본 모델에서 불러옴
         "varLanguage",
         "varCurrency",
         "varSuperhost",
+        "is_staff",  #   장고 기본 모델에서 불러옴
+        "is_superuser",  #   장고 기본 모델에서 불러옴
     )

@@ -91,8 +91,9 @@ class clsRoomAdmin(admin.ModelAdmin):
         "varCheck_in",
         "varCheck_out",
         "varInstant_book",
-        "def_Count_Amenities",
-        "def_Count_Photos",
+        "def_Count_Amenities",  #   Amenity 갯수
+        "def_Count_Photos",  #   사진 갯수
+        "def_Total_Rating",  #   방별 리뷰 점수
     )
 
     #   정렬
