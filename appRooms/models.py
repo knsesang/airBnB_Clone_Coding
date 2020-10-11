@@ -99,9 +99,27 @@ class clsRoom(core_models.TimeStampedModel):
         "clsHouseRule", related_name="relRooms", blank=True
     )
 
-    def def_Save(self, *args, **kwargs):
-        pass
-        #   super(ModelName, self).save( *args, **kwargs)       # call the real save() method
+    #   save 는 예약된 명령어를 호출하는것이므로 임의 변경이 불가능하다
+    #   def_Save → def  로 변경
+    def save(self, *args, **kwargs):
+
+        #   사용자가 정의한 작업을 진행한다
+        #   print(self.city)
+
+        #   도시명의 첫 글자를 대문자로 바꾼다
+        self.varCity = str.capitalize(self.varCity)
+
+        #   원래 호출하려던 장고 내장함수를 호출해서 save 를 진행한다
+        super().save(*args, **kwargs)  # call the real save() method
+
+    """
+    #   저장하려는 데이타 값들을 확인하고 저장할 수 있다
+    def save_model(self, request, obj, form, change):
+        print(obj, form, change)
+       
+        #   원래 호출하려던 장고 내장함수를 호출해서 save 를 진행한다
+        super().save(*args, **kwargs)
+    """
 
     def __str__(self):
         return self.varName
