@@ -48,6 +48,7 @@ class clsRoomAdmin(admin.ModelAdmin):
                     "varCity",
                     "varAddress",
                     "varPrice",
+                    "varRoom_type",
                 ),
             },
         ),
