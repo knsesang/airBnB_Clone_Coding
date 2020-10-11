@@ -24,8 +24,18 @@ class clsItemAdmin(admin.ModelAdmin):
     def_Usedby.short_description = "Used By"
 
 
+#   사진 선택하는것이 기본 3개까지 선택할수 있는 창으로 바뀜
+#   inlines = (clsPhotoInline,) 도 같이 추가됨
+#   TabularInline   : 캡션/파일선택/삭제버튼
+#   StackedInline   : 삭제버튼<br/>캡션<br/>파일선택
+class clsPhotoInline(admin.TabularInline):
+    model = models.clsPhoto
+
+
 @admin.register(models.clsRoom)
 class clsRoomAdmin(admin.ModelAdmin):
+
+    inlines = (clsPhotoInline,)
 
     fieldsets = (
         (
@@ -35,6 +45,7 @@ class clsRoomAdmin(admin.ModelAdmin):
                     "varName",
                     "varDescription",
                     "varCountry",
+                    "varCity",
                     "varAddress",
                     "varPrice",
                 ),
@@ -128,6 +139,10 @@ class clsRoomAdmin(admin.ModelAdmin):
     #   = iexact
     #   @ search
     #   None icontains  대소문자 구분 안함
+
+    #   추가전에는 host에 select 박스 형식이었지만
+    #   이제는 검색해서 text 박스에 1개만 보여지는 형식으로 바뀜
+    raw_id_fields = ("varHost",)
 
     search_fields = (
         "=varCity",
