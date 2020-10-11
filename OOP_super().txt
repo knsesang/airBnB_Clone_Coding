@@ -1,0 +1,96 @@
+
+class 안에 있는 def : method
+class 밖에 있는 def : function
+
+
+
+class Dog:
+    def __init__(self):
+        print("woof woof")
+
+    def pee(Dog):
+        print("i will pee")
+
+class Puppy(Dog):
+    pass
+
+p = Puppy()
+p.pee()
+
+"""결과
+woof woof
+i will pee
+"""
+
+
+
+
+class Dog:
+    def __init__(self):
+        print("woof woof")
+
+    def pee(Dog):
+        print("i will pee")
+
+class Puppy(Dog):
+    def pee(Dog):
+        print("go to the park")
+
+p = Puppy()
+p.pee()
+
+"""결과
+woof woof
+go to the park
+"""
+
+
+
+
+
+class Dog:
+    def __init__(self):
+        print("woof woof")
+
+    def pee(Dog):
+        print("i will pee")
+
+class Puppy(Dog):
+    def pee(Dog):
+        print("go to the park")
+        super().pee() 
+
+p = Puppy()
+p.pee()
+
+"""결과
+woof woof
+go to the park
+i will pee
+"""
+
+
+
+
+
+class Dog:
+    def __init__(self):
+        print("woof woof")
+
+    def pee(Dog):
+        print("i will pee")
+
+class Puppy(Dog):
+    def __init__(self):
+        super().__init__()
+        print("i'm tiny")
+        
+
+p = Puppy()
+p.pee()
+
+"""결과
+woof woof
+im tiny
+i will pee
+"""

@@ -99,6 +99,10 @@ class clsRoom(core_models.TimeStampedModel):
         "clsHouseRule", related_name="relRooms", blank=True
     )
 
+    def def_Save(self, *args, **kwargs):
+        pass
+        #   super(ModelName, self).save( *args, **kwargs)       # call the real save() method
+
     def __str__(self):
         return self.varName
 
