@@ -13,6 +13,14 @@ def fn_All_Rooms(request):
 
     #   print(dir(request))
     #   ['COOKIES', 'FILES', 'GET', 'META', 'POST', ...
-    now = datetime.now()
 
-    return HttpResponse(content=f"{now} hello")
+    now = datetime.now()
+    #   return HttpResponse(context=f"{now} hello")
+
+    hungry = True
+
+    return render(
+        request,
+        "all_rooms.html",
+        context={"now": now, "hungry": hungry},
+    )
