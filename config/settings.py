@@ -61,6 +61,7 @@ PROJECT_APPS = [
 #   외뷰 제작 앱
 THIRD_PARTY_APPS = [
     "django_countries",
+    "djagno_seed",
 ]
 
 
