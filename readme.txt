@@ -54,3 +54,11 @@ path = BASE_DIR / 'uploads'
 폴더를 새로 만들어 진행했을경우에는
 settings.py에도 앱을 추가해주어야 사용가능
 > python  manage.py loveyou --times 5
+
+*** 9-5
+settings.py에서 오타 수정
+MEDDIA_URL = "/media/"	
+→	MEDDIA_URL = "/media/"
+
+THIRD_PARTY_APPS = [    "djagno_seed",	]
+→	THIRD_PARTY_APPS = [    "django_seed",	]

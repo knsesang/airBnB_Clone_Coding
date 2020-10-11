@@ -58,10 +58,10 @@ PROJECT_APPS = [
     "djangoSeed.apps.clsDjangoSeedConfig",
 ]
 
-#   외뷰 제작 앱
+#   외부 제작 앱
 THIRD_PARTY_APPS = [
     "django_countries",
-    "djagno_seed",
+    "django_seed",
 ]
 
 
@@ -121,7 +121,7 @@ DATABASES = {
         #'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'airBnB',
         'USER': 'postSA',
-        'PASSWORD': '**dldydrb2967',
+        'PASSWORD': '비밀번호',
         'HOST': '192.168.219.171',
         'PORT': '17132',
     }
@@ -188,4 +188,4 @@ AUTH_USER_MODEL = "appUsers.clsUser"
 #   BASE_DIR : /home/webRoot/django31_airBnB
 MEDIA_ROOT = BASE_DIR / "uploads"
 
-MEDDIA_URL = "/media/"
+MEDIA_URL = "/media/"
