@@ -6,6 +6,8 @@ from appUsers import models as user_models
 
 import random
 
+from django.contrib.admin.utils import flatten
+
 
 class Command(BaseCommand):
     help = "this command creates rooms"
@@ -35,7 +37,23 @@ class Command(BaseCommand):
                 "varGuests": lambda x: random.randint(1, 5),
             },
         )
+        created_photos = seeder.execute()
+        print(created_photos.values)  #   dict-values([[13]])
+        print(list(created_photos.values()))  #   [[13]]
 
-        seeder.execute()
+        created_clean = flatten(list(created_photos.values()))
+        print(created_clean)  #   [13]      만들어진 pk값
+
+        for pk in created_clean:
+            room = room_models.clsRoom.objects.get(pk=pk)
+
+            #   한 방에 여러개의 사진을 넣고 싶을때
+            #   최소 1~3개의 사진을 가지게 된다ㄴ
+            for i in range(1, random.randint(2, 4)):
+                room_models.clsPhoto.objects.create(
+                    varCaption=seeder.faker.sentence(),
+                    varRoom=room,
+                    varFile=f"room_photos/{random.randint(1, 50)}.jpg",
+                )
 
         self.stdout.write(self.style.SUCCESS(f"{numbers} rooms Success"))
