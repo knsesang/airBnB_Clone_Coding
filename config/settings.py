@@ -55,6 +55,7 @@ PROJECT_APPS = [
     "appReservations.apps.clsReservationsConfig",
     "appLists.apps.clsListsConfig",
     "appConversations.apps.clsConversationsConfig",
+    "djangoSeed.apps.clsDjangoSeedConfig",
 ]
 
 #   외뷰 제작 앱

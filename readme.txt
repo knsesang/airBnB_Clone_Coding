@@ -49,3 +49,8 @@ python3 manage.py migrate appConversations
 path = os.path.join(BASE_DIR, 'uploads')
 ↓
 path = BASE_DIR / 'uploads'
+
+*** 9-0 : django-seed
+폴더를 새로 만들어 진행했을경우에는
+settings.py에도 앱을 추가해주어야 사용가능
+> python  manage.py loveyou --times 5
