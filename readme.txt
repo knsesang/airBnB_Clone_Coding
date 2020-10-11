@@ -14,12 +14,15 @@ djGuest / **spdlqj
 ***명명규칙
 동일단어에서 오는 혼동을 막기 위해서
 앱은 app, 클래스는 cls, 변수는  var 접두어를 사용한다.
-함수는 def_, related_name 은 rel
+클래스 안의 함수는 def_, 
+클래스 밖의 함수는  fn_, 
+related_name 은 rel
 
 appRooms, appUsers
 clsRoom, clsUser
 varBio, varCity
 def_count
+fn_coun
 relRoom
 
 
@@ -62,3 +65,19 @@ MEDDIA_URL = "/media/"
 
 THIRD_PARTY_APPS = [    "djagno_seed",	]
 →	THIRD_PARTY_APPS = [    "django_seed",	]
+
+
+*** 10-0
+urls.py 에서 namespace 사용
+
+--- urls.py ------------------------
+app_name = "core"
+urlpatterns = [
+    path("", room.view, name="view"),
+    path("", room.delete, name="delete"),
+]
+-------------------------------------
+
+--- html 에서 사용 -----------------
+<a href='{% url "code.view" 파라미터 %}'>aa</a>
+-----------------------------
