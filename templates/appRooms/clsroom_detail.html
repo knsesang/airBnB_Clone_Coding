@@ -7,17 +7,17 @@
 
 
 {% block content %}
-
-    detail.html<br/>
     
+    clsroom_detail.html<br/>
+
     <div>
-        <h1>{{room.varName}}</h1>
+        <h1>{{object.varName}}</h1>
         <h3>{{room.varDescription}}</h3>
     </div>
     <div>
-        <h2>By : {{room.varHost.username}}
+        <h2>By : {{object.varHost.username}}
 
-        {% if room.varHost.varSuperhost %}
+        {% if object.varHost.varSuperhost %}
             (superhost)
         {% endif %}
 
@@ -25,21 +25,21 @@
 
         <h3>Amenities</h3>
         <ul>
-            {% for a in room.varAmenities.all %}
+            {% for a in object.varAmenities.all %}
                 <li>{{a}}</li>
             {% endfor %}
         </ul>
 
         <h3>Facilities</h3>
         <ul>
-            {% for a in room.varFacilities.all %}
+            {% for a in object.varFacilities.all %}
                 <li>{{a}}</li>
             {% endfor %}
         </ul>
 
         <h3>House Rules</h3>
         <ul>
-            {% for a in room.varHouse_rules.all  %}
+            {% for a in object.varHouse_rules.all  %}
                 <li>{{a}}</li>
             {% endfor %}
         </ul>

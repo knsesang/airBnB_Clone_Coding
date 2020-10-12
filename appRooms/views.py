@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.utils import timezone
 from . import models
 
@@ -28,6 +28,12 @@ class clsHomeview(ListView):
         return context
 
 
+#   templates/appRooms/clsroom_detail.html
+class clsHomeDetail(DetailView):
+    model = models.clsRoom
+
+
+#   함수기반
 def fn_Room_Detail(request, pk):
     #   print(pk)
     #   294

@@ -105,3 +105,10 @@ class view 이용시 templates/appRooms/home.html 으로 바꾸어야 작동함
 
 *** 11-8 
 context 를 이용한 페이징
+
+*** 12.0
+함수 기반 페이징 + 상세 페이지 ~
+
+*** 12.4
+클래스 기반 상세 페이지 ~
+
