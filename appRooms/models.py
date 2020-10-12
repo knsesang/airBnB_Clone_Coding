@@ -3,6 +3,8 @@ from django_countries.fields import CountryField
 from appCore import models as core_models
 from appUsers import models as user_models
 
+from django.urls import reverse
+
 
 class clsAbstractItem(core_models.TimeStampedModel):
 
@@ -120,6 +122,10 @@ class clsRoom(core_models.TimeStampedModel):
         #   원래 호출하려던 장고 내장함수를 호출해서 save 를 진행한다
         super().save(*args, **kwargs)
     """
+
+    #   어드민 수정 화면에 "view on site 버튼이 생김
+    def get_absolute_url(self):
+        return reverse("rooms:detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return self.varName
