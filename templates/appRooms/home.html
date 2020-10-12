@@ -11,7 +11,7 @@
 
 {% block content %}
 
-    {% for room in potato  %}
+    {% for room in arrRooms.object_list  %}
         <h1>{{room.varName}} / ${{room.varPrice}}</h1>
     {% endfor %}
 
@@ -23,23 +23,19 @@
     <h5>
 
         
-        {% if page is not 1 %}
-            <a href="?txtPage={{page|add:-1}}">이전</a>    
+        {% if arrRooms.has_previous %}
+            <a href="?txtPage={{arrRooms.number|add:-1}}">이전</a>    
         {% endif %}
             
-        Page {{page}} / {{page_count}}
+        Page {{arrRooms.number}} / {{arrRooms.paginator.num_pages}}
 
-        {% if not page == page_count  %}
-            <a href="?txtPage={{page|add:1}}">다음</a>
+        {% if arrRooms.has_next  %}
+            <a href="?txtPage={{arrRooms.number|add:1}}">다음</a>
         {% endif %}
 
     </h5>
 
-    
-    {% for page in page_range  %}
-        <a href="?txtPage={{page}}">{{page}}</a>
-    {% endfor %}
-        
+
 
 {% endblock content %}
     
