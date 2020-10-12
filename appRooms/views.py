@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 from datetime import datetime
 from . import models
+from math import ceil
 
 # Create your views here.
 def fn_All_Rooms(request):
@@ -45,13 +46,17 @@ def fn_All_Rooms(request):
 
     #   값이 없다면 1으로 보이기
 
-    varPage = int(request.GET.get("txtPage", 1))
+    varPage = request.GET.get("txtPage", 1)
+    varPage = int(varPage or 1)
+    print(varPage)
+
     varPage_size = 10
     varLimit = varPage_size * varPage
     varOffset = varLimit - varPage_size
 
     #   [:5] 불러오는 갯수를 5개로 제한한다
     all_rooms = models.clsRoom.objects.all()[varOffset:varLimit]
+    varPage_count = ceil(models.clsRoom.objects.count() / varPage_size)
 
     #   11 ~ 20 번까지 불러온다
     #   all_rooms = models.clsRoom.objects.all()[10:20]
@@ -68,5 +73,8 @@ def fn_All_Rooms(request):
         context={
             "now": now,
             "potato": all_rooms,
+            "page": varPage,
+            "page_count": varPage_count,
+            "page_range": range(1, varPage_count),
         },
     )
