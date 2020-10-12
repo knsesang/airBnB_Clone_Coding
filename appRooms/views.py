@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from . import models
 
 #   Paginator 용
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage
 
 #   Paginator 용 함수, Paginator 는 list 가 필요하다
 def fn_All_Rooms(request):
@@ -59,23 +59,28 @@ def fn_All_Rooms(request):
     #   앞에지 데이타가 10건이 아니라 13건이 나타날수 있다
     arrPaginator = Paginator(arrAllRooms, 10, orphans=5)
 
-    #   get_page : 없는 페이지는 마지막 페이지를 호출한다
-    #   arrPage = arrPaginator.get_page(int(varPage))
+    try:
+        #   get_page : 없는 페이지는 마지막 페이지를 호출한다
+        #   arrPage = arrPaginator.get_page(int(varPage))
 
-    #   page : 없는 페이지는 오류 원인을 반환한다
-    #   django.core.paginator.EmptyPage: 페이지 번호가 1보다 작습니다.
-    arrPage = arrPaginator.page(int(varPage))
+        #   page : 없는 페이지는 오류 원인을 반환한다
+        #   django.core.paginator.EmptyPage: 페이지 번호가 1보다 작습니다.
+        arrPage = arrPaginator.page(int(varPage))
+
+        return render(
+            request,
+            "appRooms/home.html",
+            context={
+                "arrPage": arrPage,
+            },
+        )
+
+    except EmptyPage:
+        #   arrPage = arrPaginator.page(1)      #   오류나면 1 페이지로 보내기
+        return redirect("/")
 
     #   10 개 데이타
     #   print(vars(arrRooms))
     #   {'object_list': <QuerySet [<clsRoom: 89006 Douglas Station Suite 210
     #   Williamsberg, RI 66813>,...>, '...(remaining elements truncated)...']>,
     #   'per_page': 10, 'orphans': 0, 'allow_empty_first_page': True, 'count': 60, 'num_pages': 6}
-
-    return render(
-        request,
-        "appRooms/home.html",
-        context={
-            "arrPage": arrPage,
-        },
-    )
