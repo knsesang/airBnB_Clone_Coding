@@ -3,7 +3,10 @@ from django.utils import timezone
 from . import models
 
 #   def 함수 사용시 필요
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from django.urls import reverse
+
 
 #   class list view 형식 페이징
 #   찾는 파일은 templates/앱이름/클래스이름_list.html 을 자동으로 읽어들임
@@ -24,9 +27,23 @@ class clsHomeview(ListView):
 
 
 def fn_Room_Detail(request, pk):
-    print(pk)
+    #   print(pk)
+    #   294
 
-    return render(
-        request,
-        "appRooms/detail.html",
-    )
+    try:
+        room = models.clsRoom.objects.get(pk=pk)
+
+        #   print(room)
+        #   USNS Olsen  FPO AE 76368
+
+        return render(
+            request,
+            "appRooms/detail.html",
+            {
+                "room": room,
+            },
+        )
+
+    except models.clsRoom.DoesNotExist:
+        #   return redirect("/")
+        return redirect(reverse("appCore:home"))

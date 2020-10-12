@@ -5,6 +5,40 @@
     Home
 {% endblock page_name %}
 
-{% block content %}
 
+{% block content %}
+    <div>
+        <h1>{{room.varName}}</h1>
+        <h3>{{room.varDescription}}</h3>
+    </div>
+    <div>
+        <h2>By : {{room.varHost.username}}
+
+        {% if room.varHost.varSuperhost %}
+            (superhost)
+        {% endif %}
+
+        </h2>
+
+        <h3>Amenities</h3>
+        <ul>
+            {% for a in room.varAmenities.all %}
+                <li>{{a}}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Facilities</h3>
+        <ul>
+            {% for a in room.varFacilities.all %}
+                <li>{{a}}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>House Rules</h3>
+        <ul>
+            {% for a in room.varHouse_rules.all  %}
+                <li>{{a}}</li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock content %} 
