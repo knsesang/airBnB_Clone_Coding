@@ -11,31 +11,25 @@
 
 {% block content %}
 
-    {% for room in arrRooms.object_list  %}
+    {% for room in arrPage.object_list  %}
         <h1>{{room.varName}} / ${{room.varPrice}}</h1>
     {% endfor %}
 
-    <!--
-        장고는 ｛｛ page-1 ｝｝같은것을 허용하지 않음
-        결과만을 원한다
-    -->
-    
     <h5>
 
-        
-        {% if arrRooms.has_previous %}
-            <a href="?txtPage={{arrRooms.number|add:-1}}">이전</a>    
+        {% if arrPage.has_previous %}
+            <a href="?txtPage={{arrPage.previous_page_number}}">이전</a>    
         {% endif %}
             
-        Page {{arrRooms.number}} / {{arrRooms.paginator.num_pages}}
+        Page {{arrPage.number}} / {{arrPage.paginator.num_pages}}
 
-        {% if arrRooms.has_next  %}
-            <a href="?txtPage={{arrRooms.number|add:1}}">다음</a>
+        {% if arrPage.has_next  %}
+            <a href="?txtPage={{arrPage.next_page_number}}">다음</a>
         {% endif %}
 
     </h5>
 
-
+    
 
 {% endblock content %}
     

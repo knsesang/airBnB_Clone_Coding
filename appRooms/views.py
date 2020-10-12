@@ -43,7 +43,6 @@ def fn_All_Rooms(request):
 
     #   값이 없다면 1로 보이기
     varPage = request.GET.get("txtPage", 1)
-    varPage = int(varPage or 1)
     #   print(varPage)
 
     #   전체 데이타
@@ -54,8 +53,18 @@ def fn_All_Rooms(request):
     # Williamsberg, RI 66813>, <clsRoom: 37587 Powell Loaf Apt. 001
     # Barbaraport, ND 65116>, <clsRoom: 4622 Melton Ford...?>
 
-    arrPaginator = Paginator(arrAllRooms, 10)
-    arrRooms = arrPaginator.get_page(varPage)
+    #   orphans : 고아 ?
+    #   데이타가 23건 : per_page = 10, orphans = 3
+    #   다음 페이지의 row가 지정숫자보다 작다면 앞 페이지로 당겨온다
+    #   앞에지 데이타가 10건이 아니라 13건이 나타날수 있다
+    arrPaginator = Paginator(arrAllRooms, 10, orphans=5)
+
+    #   get_page : 없는 페이지는 마지막 페이지를 호출한다
+    #   arrPage = arrPaginator.get_page(int(varPage))
+
+    #   page : 없는 페이지는 오류 원인을 반환한다
+    #   django.core.paginator.EmptyPage: 페이지 번호가 1보다 작습니다.
+    arrPage = arrPaginator.page(int(varPage))
 
     #   10 개 데이타
     #   print(vars(arrRooms))
@@ -67,6 +76,6 @@ def fn_All_Rooms(request):
         request,
         "appRooms/home.html",
         context={
-            "arrRooms": arrRooms,
+            "arrPage": arrPage,
         },
     )
