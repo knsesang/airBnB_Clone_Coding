@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home</title>
+    <title>
+
+        {% block page_name %}
+
+        {% endblock page_name %}
+
+    </title>
 </head>
 <body>
-    home.html
+    {% include "partials/header.html" %}    
+
+    {% block content %}{% endblock %}
+
+    {% include "partials/footer.html" %}    
+
 </body>
 </html>
+
