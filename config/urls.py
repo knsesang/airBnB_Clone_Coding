@@ -23,6 +23,7 @@ urlpatterns = [
     #   사용자 정의 url 불러오게 추가한다
     path("", include("appCore.urls", namespace="appCore")),
     #   path("users", include("appUsers.urls", namespace="appUsers")),
+    path("rooms/", include("appRooms.urls", namespace="appRooms")),
     path("admin/", admin.site.urls),
 ]
 
