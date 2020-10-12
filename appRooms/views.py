@@ -5,7 +5,9 @@ from . import models
 #   def 함수 사용시 필요
 from django.shortcuts import render, redirect
 
-from django.urls import reverse
+#   from django.urls import reverse
+
+from django.http import Http404
 
 
 #   class list view 형식 페이징
@@ -46,4 +48,10 @@ def fn_Room_Detail(request, pk):
 
     except models.clsRoom.DoesNotExist:
         #   return redirect("/")
-        return redirect(reverse("appCore:home"))
+
+        #   from django.urls import reverse 필요
+        #   return redirect(reverse("appCore:home"))
+
+        #   from django.http import Http404 필요
+        #   settigs.py  에서 debug=false 일때만 확인이 가능
+        raise Http404()
