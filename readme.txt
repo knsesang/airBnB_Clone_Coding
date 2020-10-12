@@ -85,3 +85,16 @@ urlpatterns = [
 
 *** 11-0
 페이징 강의 방향에 대한 설명
+
+*** 11-7
+장고 참고 사이트 : https://ccbv.co.uk/projects/Django/2.2/
+
+장고앱 이름(=폴더명)이 appRooms 일 경우
+
+paginater 이용시 templates/rooms/home.html 은 작동 (임의 폴더명 가능)
+
+class view 이용시 templates/rooms/home.html 은 오류 (임의 폴더명 불가능)
+Exception Type: TemplateDoesNotExist
+Exception Value: appRooms/clsroom_list.html
+
+class view 이용시 templates/appRooms/home.html 으로 바꾸어야 작동함
