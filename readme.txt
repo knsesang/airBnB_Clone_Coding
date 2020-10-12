@@ -17,6 +17,7 @@ djGuest / **spdlqj
 클래스 안의 함수는 def_, 
 클래스 밖의 함수는  fn_, 
 related_name 은 rel
+form이나 파라미터에 사용하는 변수는 txt
 
 appRooms, appUsers
 clsRoom, clsUser
@@ -24,7 +25,7 @@ varBio, varCity
 def_count
 fn_coun
 relRoom
-
+txtPage
 
 *** 3-3 : no such column 오류 : syncdb 실행 
 *** 3-6 : no such table : 일괄 마이그레이션이 아니라 개별 마이그레이션 해준다
