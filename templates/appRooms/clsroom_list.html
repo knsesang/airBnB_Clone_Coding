@@ -11,7 +11,9 @@
 
 {% block content %}
 
-    {% for room in object_list  %}
+    {{now}}
+    
+    {% for room in objRooms  %}
         <h1>{{room.varName}} / ${{room.varPrice}}</h1>
     {% endfor %}
 

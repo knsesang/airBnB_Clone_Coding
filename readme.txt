@@ -18,6 +18,7 @@ djGuest / **spdlqj
 클래스 밖의 함수는  fn_, 
 related_name 은 rel
 form이나 파라미터에 사용하는 변수는 txt
+object 는 obj
 
 appRooms, appUsers
 clsRoom, clsUser
@@ -26,6 +27,7 @@ def_count
 fn_coun
 relRoom
 txtPage
+objRooms
 
 *** 3-3 : no such column 오류 : syncdb 실행 
 *** 3-6 : no such table : 일괄 마이그레이션이 아니라 개별 마이그레이션 해준다
@@ -98,3 +100,8 @@ Exception Type: TemplateDoesNotExist
 Exception Value: appRooms/clsroom_list.html
 
 class view 이용시 templates/appRooms/home.html 으로 바꾸어야 작동함
+
+파이썬+장고 방식의 페이징
+
+*** 11-8 
+context 를 이용한 페이징
