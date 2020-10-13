@@ -49,8 +49,76 @@
 
         </div>
 
+        <div>
+            <label for="price">Price</label>
+            <input type=number value={{varPrice}} name="txtPrice" id="txtPrice" placeholder="search by price" />
+        </div>
+
+
+        <div>
+            <label for="guests">Guests</label>
+            <input type=number value={{varGuests}} name="txtGuests" id="txtGuests" placeholder="search by Guests" />
+        </div>
+
+        <div>
+            <label for="Bedrooms">Bedrooms</label>
+            <input type=number value={{varBedrooms}} name="txtBedrooms" id="txtBedrooms" placeholder="search by Bedrooms" />
+        </div>
+
+        <div>
+            <label for="beds">Beds</label>
+            <input type=number value={{varBeds}} name="txtBeds" id="txtBeds" placeholder="search by Beds" />
+        </div>
+
+        <div>
+            <label for="baths">Baths</label>
+            <input type=number value={{varBaths}} name="txtBaths" id="txtBaths" placeholder="search by Baths" />
+        </div>
+
+        <div>
+            <h3>Amenities</h3>
+
+            <ul>
+                {% for amenity in arrAmenities %}
+                    <li>
+                        <label for=a_{{amenity.pk}}>{{amenity.colName}}</label>
+                        <input value={{amenity.pk}} type="checkbox" id="a_{{amenity.pk}}" name="chkAmenities" />
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
         
-            <button>Search</button>
+        <div>
+            <h3>Facilities</h3>
+
+            <ul>
+                {% for facility in arrFacilities %}
+                    <li>
+                        <label for=f_{{facility.pk}}>{{facility.colName}}</label>
+                        <input value={{facility.pk}} type="checkbox" id="f_{{facility.pk}}" name="chkFacilities" />
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <div>
+            <h3>House rules</h3>
+
+            <ul>
+                {% for houserule in arrHouse_rules %}
+                    <li>
+                        <label for=h_{{houserule.pk}}>{{houserule.colName}}</label>
+                        <input value={{houserule.pk}} type="checkbox" id="h_{{houserule.pk}}" name="chkHouse_rules" />
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        
+        <button>Search</button>
 
     </form>
     

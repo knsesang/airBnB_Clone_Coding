@@ -81,26 +81,53 @@ def fn_Search(request):
 
     #   사용자가 선택한 room type pk
     varRoom_type = int(request.GET.get("selRoom_type", 0))
+    varPrice = int(request.GET.get("txtPrice", 0))
+    varGuests = int(request.GET.get("txtPrice", 0))
+    varBedrooms = int(request.GET.get("txtBedrooms", 0))
+    varBeds = int(request.GET.get("txtBeds", 0))
+    varBaths = int(request.GET.get("txtBaths", 0))
+
+    varAmenities = request.GET.get("chkAmenities")
+    print(varAmenities)
+    varFacilities = request.GET.get("chkFacilities")
+    print(varFacilities)
+    varHouse_rules = request.GET.get("chkHouse_rules")
+    print(varHouse_rules)
 
     arrRoom_types = models.clsRoomType.objects.all()
     #   print(arrRoom_types)
     #   <QuerySet [<clsRoomType: Apartment>, <clsRoomType: Bed and breakfast>,...>
+
+    arrAmenities = models.clsAmenity.objects.all()
+    arrFacilities = models.clsFacility.objects.all()
+    arrHouse_rules = models.clsHouseRule.objects.all()
 
     #   사용자가 선택한 web form 값들 모음
     form = {
         "varCity": varCity,
         "varCountry": varCountry,
         "varRoom_type": varRoom_type,
+        "varPrice": varPrice,
+        "varGuests": varGuests,
+        "varBedrooms": varBedrooms,
+        "varBeds": varBeds,
+        "varBaths": varBaths,
+        "varAmenities": varAmenities,
+        "varFacilities": varFacilities,
+        "varHouse_rules": varHouse_rules,
     }
 
-    print("varCity : " + varCity)
-    print("varCountry : " + varCountry)
-    print(f"varRoom_type : {varRoom_type}")
+    #   print("varCity : " + varCity)
+    #   print("varCountry : " + varCountry)
+    #   print(f"varRoom_type : {varRoom_type}")
 
     #   사용자에게 전달되는 선택해야 할 값들
     choices = {
         "countries": countries,  # 장고 국가 선택 앱
         "arrRoom_types": arrRoom_types,
+        "arrAmenities": arrAmenities,
+        "arrFacilities": arrFacilities,
+        "arrHouse_rules": arrHouse_rules,
     }
 
     return render(
