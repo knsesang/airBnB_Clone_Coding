@@ -87,12 +87,18 @@ def fn_Search(request):
     varBeds = int(request.GET.get("txtBeds", 0))
     varBaths = int(request.GET.get("txtBaths", 0))
 
-    varAmenities = request.GET.get("chkAmenities")
-    print(varAmenities)
-    varFacilities = request.GET.get("chkFacilities")
-    print(varFacilities)
-    varHouse_rules = request.GET.get("chkHouse_rules")
-    print(varHouse_rules)
+    varInstant_book_only = request.GET.get("chkInstant_book_only", False)
+    varSuper_host_only = request.GET.get("chkSuper_host_only", False)
+
+    #   list 형식으로 받을때는 getlist
+    varAmenities = request.GET.getlist("chkAmenities")
+    #   print(varAmenities)
+    #   ['36', '39']
+
+    varFacilities = request.GET.getlist("chkFacilities")
+    #   print(varFacilities)
+    varHouse_rules = request.GET.getlist("chkHouse_rules")
+    #   print(varHouse_rules)
 
     arrRoom_types = models.clsRoomType.objects.all()
     #   print(arrRoom_types)
@@ -112,6 +118,8 @@ def fn_Search(request):
         "varBedrooms": varBedrooms,
         "varBeds": varBeds,
         "varBaths": varBaths,
+        "varInstant_book_only": varInstant_book_only,
+        "varSuper_host_only": varSuper_host_only,
         "varAmenities": varAmenities,
         "varFacilities": varFacilities,
         "varHouse_rules": varHouse_rules,

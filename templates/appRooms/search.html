@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 
-
 {% block page_title %}
     Search
 {% endblock page_title %}
@@ -76,13 +75,46 @@
         </div>
 
         <div>
+            <label for="instant_book_only">Instant book only?</label>
+            <input  type=checkbox name="chkInstant_book_only" 
+                    id="chkInstant_book_only" placeholder="search by Instant book only" 
+                    {% if varInstant_book_only %}
+                        checked
+                    {% endif %}
+                    />
+        </div>
+        
+        
+        <div>
+            <label for="super_host_only">Super host only?</label>
+            <input  type=checkbox name="chkSuper_host_only" 
+                    id="chkSuper_host_only" placeholder="search by Super host only" 
+                     {% if varSuper_host_only %}
+                        checked
+                    {% endif %}
+                    />
+        </div>
+
+        <div>
             <h3>Amenities</h3>
 
             <ul>
                 {% for amenity in arrAmenities %}
                     <li>
                         <label for=a_{{amenity.pk}}>{{amenity.colName}}</label>
-                        <input value={{amenity.pk}} type="checkbox" id="a_{{amenity.pk}}" name="chkAmenities" />
+
+                        <!--    slugify : 문자형으로 만들어줌 -->
+
+                        <input  value={{amenity.pk}} 
+                                type="checkbox" 
+                                id="a_{{amenity.pk}}" 
+                                name="chkAmenities" 
+                                
+                                {% if amenity.pk|slugify in varAmenities %}
+                                    checked
+                                {% endif %}
+                                    
+                                />
                     </li>
                 {% endfor %}
             </ul>
@@ -97,7 +129,15 @@
                 {% for facility in arrFacilities %}
                     <li>
                         <label for=f_{{facility.pk}}>{{facility.colName}}</label>
-                        <input value={{facility.pk}} type="checkbox" id="f_{{facility.pk}}" name="chkFacilities" />
+                        <input  value={{facility.pk}} 
+                                type="checkbox" 
+                                id="f_{{facility.pk}}" 
+                                name="chkFacilities" 
+                                
+                                {% if facility.pk|slugify in varFacilities %}
+                                    checked
+                                {% endif %}
+                                />
                     </li>
                 {% endfor %}
             </ul>
@@ -111,7 +151,16 @@
                 {% for houserule in arrHouse_rules %}
                     <li>
                         <label for=h_{{houserule.pk}}>{{houserule.colName}}</label>
-                        <input value={{houserule.pk}} type="checkbox" id="h_{{houserule.pk}}" name="chkHouse_rules" />
+                        <input  value={{houserule.pk}} 
+                                type="checkbox" 
+                                id="h_{{houserule.pk}}" 
+                                name="chkHouse_rules" 
+                                
+                                {% if houserule.pk|slugify in varHouse_rules %}
+                                    checked
+                                {% endif %}
+
+                                />
                     </li>
                 {% endfor %}
             </ul>
