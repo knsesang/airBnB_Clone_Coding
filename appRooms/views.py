@@ -14,7 +14,7 @@ from django.http import Http404
 #   찾는 파일은 templates/앱이름/클래스이름_list.html 을 자동으로 읽어들임
 #   templates/appRooms/clsroom_list.html
 #   파이썬과 장고가 합쳐진 방식
-class clsHomeview(ListView):
+class clsHomeView(ListView):
     model = models.clsRoom
     paginate_by = 10
     paginate_orphans = 5
@@ -61,3 +61,24 @@ def fn_Room_Detail(request, pk):
         #   from django.http import Http404 필요
         #   settigs.py  에서 debug=false 일때만 확인이 가능
         raise Http404()
+
+
+#   검색
+def fn_Search(request):
+    # print(request)
+    #   <WSGIRequest: GET '/rooms/search/'>
+    #   print(dir(request))
+
+    varCity = request.GET.get("txtCity")
+
+    #   print(varCity)
+
+    varCity = varCity.capitalize()  #   DB 데이타는  대문자로 시작하므로
+
+    return render(
+        request,
+        "appRooms/search.html",
+        {
+            "varCity": varCity,
+        },
+    )
