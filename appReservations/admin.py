@@ -6,13 +6,13 @@ from . import models
 class clsRevervationAdmin(admin.ModelAdmin):
 
     list_display = (
-        "varRoom",
-        "varStatus",
-        "varCheck_in",
-        "varCheck_out",
-        "varGuest",
+        "colRoom",
+        "colStatus",
+        "colCheck_in",
+        "colCheck_out",
+        "colGuest",
         "def_In_Progress",
         "def_Is_Finished",
     )
 
-    list_filter = ("varStatus",)
+    list_filter = ("colStatus",)

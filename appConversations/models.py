@@ -7,7 +7,7 @@ from appCore import models as core_models
 class clsConversation(core_models.TimeStampedModel):
 
     #   Participants : 참가자
-    varParticipants = models.ManyToManyField(
+    colParticipants = models.ManyToManyField(
         "appUsers.clsUser", related_name="clsConverstations", blank=True
     )
 
@@ -15,19 +15,19 @@ class clsConversation(core_models.TimeStampedModel):
 
         usernames = []
 
-        for user in self.varParticipants.all():
+        for user in self.colParticipants.all():
             #   print(user.username)
             usernames.append(user.username)  #   username : clsUser 안의 장고 기본생성 컬럼
 
         return ", ".join(usernames)
         #   생성날짜
-        #   return str(self.varCreated)
+        #   return str(self.colCreated)
 
     def def_Count_Messages(self):
         return self.relMessages.count()
 
     def def_Count_Participants(self):
-        return self.varParticipants.count()
+        return self.colParticipants.count()
 
     def_Count_Messages.short_description = "Message갯수"
     def_Count_Participants.short_description = "_Participants갯수ㄴ"
@@ -35,13 +35,13 @@ class clsConversation(core_models.TimeStampedModel):
 
 class clsMessage(core_models.TimeStampedModel):
 
-    varMessage = models.TextField()
-    varUser = models.ForeignKey(
+    colMessage = models.TextField()
+    colUser = models.ForeignKey(
         "appUsers.clsUser", related_name="relMessages", on_delete=models.CASCADE
     )
-    varConversation = models.ForeignKey(
+    colConversation = models.ForeignKey(
         "clsConversation", related_name="relMessages", on_delete=models.CASCADE
     )
 
     def __str__(self):
-        return f"{self.varUser} says : {self.varMessage}"
+        return f"{self.colUser} says : {self.colMessage}"

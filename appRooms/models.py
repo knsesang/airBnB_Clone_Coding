@@ -8,13 +8,13 @@ from django.urls import reverse
 
 class clsAbstractItem(core_models.TimeStampedModel):
 
-    varName = models.CharField(max_length=80)
+    colName = models.CharField(max_length=80)
 
     class Meta:
         abstract = True
 
     def __str__(self):
-        return self.varName
+        return self.colName
 
 
 class clsRoomType(clsAbstractItem):
@@ -23,11 +23,11 @@ class clsRoomType(clsAbstractItem):
         verbose_name = "Room Type"
 
         #   생성된 날짜 순대로 정렬
-        #   ordering = ["-varCreated"]
+        #   ordering = ["-colCreated"]
 
-        #   ordering = ["-varName"]     역순
+        #   ordering = ["-colName"]     역순
 
-        ordering = ["varName"]
+        ordering = ["colName"]
 
 
 class clsAmenity(clsAbstractItem):
@@ -49,55 +49,55 @@ class clsHouseRule(clsAbstractItem):
 
 
 class clsPhoto(core_models.TimeStampedModel):
-    varCaption = models.CharField(max_length=100)
-    varFile = models.ImageField(upload_to="room_photos")
+    colCaption = models.CharField(max_length=100)
+    colFile = models.ImageField(upload_to="room_photos")
 
     #   파이썬은 위에서 아래로 실행한다.
     #   clsRoom 이 아래에 있으므로 실행 오류가 생길수 있다
-    #   varRoom = models.ForeignKey(clsRoom, on_delete=models.CASCADE) 오류발생
+    #   colRoom = models.ForeignKey(clsRoom, on_delete=models.CASCADE) 오류발생
 
     #   클래스 이름을 string 으로 지정하면 회피 가능ㄴ
-    varRoom = models.ForeignKey(
+    colRoom = models.ForeignKey(
         "clsRoom", related_name="relPhotos", on_delete=models.CASCADE
     )
 
     def __str__(self):
-        return self.varCaption
+        return self.colCaption
 
 
 # Create your models here.
 class clsRoom(core_models.TimeStampedModel):
-    varName = models.CharField(null=True, blank=True, max_length=140)
-    varDescription = models.TextField(null=True, blank=True)
-    varCountry = CountryField(null=True, blank=True)
-    varCity = models.CharField(max_length=80, null=True, blank=True)
-    varPrice = models.IntegerField(default=0)
-    varAddress = models.CharField(max_length=140, null=True, blank=True)
-    varGuests = models.IntegerField(default=0)
-    varBeds = models.IntegerField(default=0)
-    varBedrooms = models.IntegerField(default=0)
-    varBaths = models.IntegerField(default=0)
-    varCheck_in = models.TimeField(null=True)
-    varCheck_out = models.TimeField(null=True)
-    varInstant_book = models.BooleanField(default=False)
-    varHost = models.ForeignKey(
+    colName = models.CharField(null=True, blank=True, max_length=140)
+    colDescription = models.TextField(null=True, blank=True)
+    colCountry = CountryField(null=True, blank=True)
+    colCity = models.CharField(max_length=80, null=True, blank=True)
+    colPrice = models.IntegerField(default=0)
+    colAddress = models.CharField(max_length=140, null=True, blank=True)
+    colGuests = models.IntegerField(default=0)
+    colBeds = models.IntegerField(default=0)
+    colBedrooms = models.IntegerField(default=0)
+    colBaths = models.IntegerField(default=0)
+    colCheck_in = models.TimeField(null=True)
+    colCheck_out = models.TimeField(null=True)
+    colInstant_book = models.BooleanField(default=False)
+    colHost = models.ForeignKey(
         "appUsers.clsUser", related_name="relRooms", null=True, on_delete=models.CASCADE
     )
 
-    varRoom_type = models.ForeignKey(
+    colRoom_type = models.ForeignKey(
         "clsRoomType",
         related_name="relRooms",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
     )
-    varAmenities = models.ManyToManyField(
+    colAmenities = models.ManyToManyField(
         "clsAmenity", related_name="relRooms", blank=True
     )
-    varFacilities = models.ManyToManyField(
+    colFacilities = models.ManyToManyField(
         "clsFacility", related_name="relRooms", blank=True
     )
-    varHouse_rules = models.ManyToManyField(
+    colHouse_rules = models.ManyToManyField(
         "clsHouseRule", related_name="relRooms", blank=True
     )
 
@@ -109,7 +109,7 @@ class clsRoom(core_models.TimeStampedModel):
         #   print(self.city)
 
         #   도시명의 첫 글자를 대문자로 바꾼다
-        self.varCity = str.capitalize(self.varCity)
+        self.colCity = str.capitalize(self.colCity)
 
         #   원래 호출하려던 장고 내장함수를 호출해서 save 를 진행한다
         super().save(*args, **kwargs)  # call the real save() method
@@ -128,7 +128,7 @@ class clsRoom(core_models.TimeStampedModel):
         return reverse("rooms:detail", kwargs={"pk": self.pk})
 
     def __str__(self):
-        return self.varName
+        return self.colName
 
     #   방의 리뷰 평균
     def def_Total_Rating(self):

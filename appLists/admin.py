@@ -7,11 +7,11 @@ from . import models
 class clsListsAdmin(admin.ModelAdmin):
 
     list_display = (
-        "varName",
-        "varUser",
+        "colName",
+        "colUser",
         "def_Count_Rooms",
     )
 
-    search_fields = ("^varName",)
+    search_fields = ("^colName",)
 
-    filter_horizontal = ("varRooms",)
+    filter_horizontal = ("colRooms",)

@@ -22,14 +22,14 @@ class Command(BaseCommand):
             review_models.clsReview,
             numbers,
             {
-                "varAccuracy": lambda x: random.randint(1, 5),
-                "varCommunication": lambda x: random.randint(1, 5),
-                "varCleanliness": lambda x: random.randint(1, 5),
-                "varLocation": lambda x: random.randint(1, 5),
-                "varCheck_in": lambda x: random.randint(1, 5),
-                "varValue": lambda x: random.randint(1, 5),
-                "varRoom": lambda x: random.choice(rooms),
-                "varUser": lambda x: random.choice(users),
+                "colAccuracy": lambda x: random.randint(1, 5),
+                "colCommunication": lambda x: random.randint(1, 5),
+                "colCleanliness": lambda x: random.randint(1, 5),
+                "colLocation": lambda x: random.randint(1, 5),
+                "colCheck_in": lambda x: random.randint(1, 5),
+                "colValue": lambda x: random.randint(1, 5),
+                "colRoom": lambda x: random.choice(rooms),
+                "colUser": lambda x: random.choice(users),
             },
         )
 

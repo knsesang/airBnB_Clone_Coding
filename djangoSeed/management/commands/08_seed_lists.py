@@ -26,7 +26,7 @@ class Command(BaseCommand):
             list_models.clsList,
             numbers,
             {
-                "varUser": lambda x: random.choice(users),
+                "colUser": lambda x: random.choice(users),
             },
         )
 
@@ -39,6 +39,6 @@ class Command(BaseCommand):
 
             #   list_model.clsRooms.add(to_add) 가 아닌 이유
             #   to_add 가 array 이기때문에
-            list_model.varRooms.add(*to_add)
+            list_model.colRooms.add(*to_add)
 
         self.stdout.write(self.style.SUCCESS(f"{numbers} {NAME} lists ccreated"))

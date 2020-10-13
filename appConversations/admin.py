@@ -7,7 +7,7 @@ class clsMessageAdmin(admin.ModelAdmin):
 
     list_display = (
         "__str__",
-        "varCreated",
+        "colCreated",
     )
 
 

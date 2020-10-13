@@ -11,13 +11,13 @@
     clsroom_detail.html<br/>
 
     <div>
-        <h1>{{object.varName}}</h1>
-        <h3>{{room.varDescription}}</h3>
+        <h1>{{object.colName}}</h1>
+        <h3>{{room.colDescription}}</h3>
     </div>
     <div>
-        <h2>By : {{object.varHost.username}}
+        <h2>By : {{object.colHost.username}}
 
-        {% if object.varHost.varSuperhost %}
+        {% if object.colHost.colSuperhost %}
             (superhost)
         {% endif %}
 
@@ -25,21 +25,21 @@
 
         <h3>Amenities</h3>
         <ul>
-            {% for a in object.varAmenities.all %}
+            {% for a in object.colAmenities.all %}
                 <li>{{a}}</li>
             {% endfor %}
         </ul>
 
         <h3>Facilities</h3>
         <ul>
-            {% for a in object.varFacilities.all %}
+            {% for a in object.colFacilities.all %}
                 <li>{{a}}</li>
             {% endfor %}
         </ul>
 
         <h3>House Rules</h3>
         <ul>
-            {% for a in object.varHouse_rules.all  %}
+            {% for a in object.colHouse_rules.all  %}
                 <li>{{a}}</li>
             {% endfor %}
         </ul>

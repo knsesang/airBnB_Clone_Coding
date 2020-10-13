@@ -62,6 +62,6 @@ class Command(BaseCommand):
 
         for a in Amenities:
             print(a)
-            clsAmenity.objects.create(varName=a)
+            clsAmenity.objects.create(colName=a)
 
         self.stdout.write(self.style.SUCCESS(f"{len(Amenities)} Amenities Created"))

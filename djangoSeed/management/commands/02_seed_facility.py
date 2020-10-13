@@ -21,6 +21,6 @@ class Command(BaseCommand):
         ]
         for f in facilities:
             print(f)
-            clsFacility.objects.create(varName=f)
+            clsFacility.objects.create(colName=f)
 
         self.stdout.write(self.style.SUCCESS(f"{len(facilities)} facilities created"))

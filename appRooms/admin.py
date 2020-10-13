@@ -14,7 +14,7 @@ from django.utils.html import mark_safe
 class clsItemAdmin(admin.ModelAdmin):
 
     list_display = (
-        "varName",
+        "colName",
         "def_Usedby",
     )
 
@@ -42,13 +42,13 @@ class clsRoomAdmin(admin.ModelAdmin):
             "Basic Info",
             {
                 "fields": (
-                    "varName",
-                    "varDescription",
-                    "varCountry",
-                    "varCity",
-                    "varAddress",
-                    "varPrice",
-                    "varRoom_type",
+                    "colName",
+                    "colDescription",
+                    "colCountry",
+                    "colCity",
+                    "colAddress",
+                    "colPrice",
+                    "colRoom_type",
                 ),
             },
         ),
@@ -56,9 +56,9 @@ class clsRoomAdmin(admin.ModelAdmin):
             "Times",
             {
                 "fields": (
-                    "varCheck_in",
-                    "varCheck_out",
-                    "varInstant_book",
+                    "colCheck_in",
+                    "colCheck_out",
+                    "colInstant_book",
                 ),
             },
         ),
@@ -66,10 +66,10 @@ class clsRoomAdmin(admin.ModelAdmin):
             "Space",
             {
                 "fields": (
-                    "varGuests",
-                    "varBeds",
-                    "varBedrooms",
-                    "varBaths",
+                    "colGuests",
+                    "colBeds",
+                    "colBedrooms",
+                    "colBaths",
                 ),
             },
         ),
@@ -79,34 +79,34 @@ class clsRoomAdmin(admin.ModelAdmin):
                 #   테이블 접음
                 "classes": ("collapse",),
                 "fields": (
-                    "varAmenities",
-                    "varFacilities",
-                    "varHouse_rules",
+                    "colAmenities",
+                    "colFacilities",
+                    "colHouse_rules",
                 ),
             },
         ),
         (
             "Last Details",
             {
-                "fields": ("varHost",),
+                "fields": ("colHost",),
             },
         ),
     )
 
     #   목록 헤드 컬럼 선언
     list_display = (
-        "varName",
-        "varCountry",
-        "varCity",
-        "varPrice",
-        "varAddress",
-        "varGuests",
-        "varBeds",
-        "varBedrooms",
-        "varBaths",
-        "varCheck_in",
-        "varCheck_out",
-        "varInstant_book",
+        "colName",
+        "colCountry",
+        "colCity",
+        "colPrice",
+        "colAddress",
+        "colGuests",
+        "colBeds",
+        "colBedrooms",
+        "colBaths",
+        "colCheck_in",
+        "colCheck_out",
+        "colInstant_book",
         "def_Count_Amenities",  #   Amenity 갯수
         "def_Count_Photos",  #   사진 갯수
         "def_Total_Rating",  #   방별 리뷰 점수
@@ -115,23 +115,23 @@ class clsRoomAdmin(admin.ModelAdmin):
     #   정렬
     """
     ordering = (
-        "varName",
-        "varPrice",
-        "varBedrooms",
+        "colName",
+        "colPrice",
+        "colBedrooms",
     )
     """
 
     # 필터, 빠른 선택
     list_filter = (
-        "varInstant_book",
-        "varHost__varSuperhost",
-        "varHost__varGender",
-        "varRoom_type",
-        "varAmenities",
-        "varFacilities",
-        "varHouse_rules",
-        "varCity",
-        "varCountry",
+        "colInstant_book",
+        "colHost__colSuperhost",
+        "colHost__colGender",
+        "colRoom_type",
+        "colAmenities",
+        "colFacilities",
+        "colHouse_rules",
+        "colCity",
+        "colCountry",
     )
 
     #   목록에서 검색창 만들기
@@ -143,17 +143,17 @@ class clsRoomAdmin(admin.ModelAdmin):
 
     #   추가전에는 host에 select 박스 형식이었지만
     #   이제는 검색해서 text 박스에 1개만 보여지는 형식으로 바뀜
-    raw_id_fields = ("varHost",)
+    raw_id_fields = ("colHost",)
 
     search_fields = (
-        "=varCity",
-        "^varHost__username",  #   username 장고 기본 생성 컬럼
+        "=colCity",
+        "^colHost__username",  #   username 장고 기본 생성 컬럼
     )
 
     filter_horizontal = (
-        "varAmenities",
-        "varFacilities",
-        "varHouse_rules",
+        "colAmenities",
+        "colFacilities",
+        "colHouse_rules",
     )
 
     #   Romm 별로 Amenity 갯수 구하는 함수
@@ -163,10 +163,10 @@ class clsRoomAdmin(admin.ModelAdmin):
         #   print(obj)  #   방이름을 불러온다
         #   예쁜방
 
-        #   print(obj.varAmenities.all())
+        #   print(obj.colAmenities.all())
         #   <QuerySet [<clsAmenity: wifi>, <clsAmenity: shower>]>
 
-        return obj.varAmenities.count()
+        return obj.colAmenities.count()
 
     #   short_description : 컬럼의 이름을 바꾼다
     def_Count_Amenities.short_description = "Amenity갯수"
@@ -187,13 +187,13 @@ class clsPhotoAdmin(admin.ModelAdmin):
     )
 
     def def_Get_Thumbnale(self, obj):
-        #   print(dir(obj.varFile))
+        #   print(dir(obj.colFile))
 
-        #   print(obj.varFile.path)     #   /home/webRoot/django31_airBnB/uploads/room_photos/hotels.jpg
-        #   print(obj.varFile.url)      #   /room_photos/hotels.jpg
-        #   print(obj.varFile.width)    #   318
-        #   print(obj.varFile.height)   #   159
+        #   print(obj.colFile.path)     #   /home/webRoot/django31_airBnB/uploads/room_photos/hotels.jpg
+        #   print(obj.colFile.url)      #   /room_photos/hotels.jpg
+        #   print(obj.colFile.width)    #   318
+        #   print(obj.colFile.height)   #   159
 
-        return mark_safe(f'<img width="50px" src="{obj.varFile.url}" />')
+        return mark_safe(f'<img width="50px" src="{obj.colFile.url}" />')
 
     def_Get_Thumbnale.short_description = "썸네일"

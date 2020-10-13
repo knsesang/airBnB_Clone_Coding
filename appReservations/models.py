@@ -21,21 +21,21 @@ class clsReservation(core_models.TimeStampedModel):
         (STATUS_CANCELED, "canceled"),
     )
 
-    varStatus = models.CharField(
+    colStatus = models.CharField(
         choices=STATUS_CHOICES, default=STATUS_PENDING, max_length=12
     )
-    varCheck_in = models.DateField(null=True)
-    varCheck_out = models.DateField(null=True)
+    colCheck_in = models.DateField(null=True)
+    colCheck_out = models.DateField(null=True)
 
-    varGuest = models.ForeignKey(
+    colGuest = models.ForeignKey(
         "appUsers.clsUser", related_name="relReservations", on_delete=models.CASCADE
     )
-    varRoom = models.ForeignKey(
+    colRoom = models.ForeignKey(
         "appRooms.clsRoom", related_name="relReservations", on_delete=models.CASCADE
     )
 
     def __str__(self):
-        return f"{self.varRoom}-{self.varCheck_in}"
+        return f"{self.colRoom}-{self.colCheck_in}"
 
     def def_In_Progress(self):
         #   now = timezone.now().date()     #   미국시간으로만 불러옴
@@ -54,12 +54,12 @@ class clsReservation(core_models.TimeStampedModel):
         #   print(now)
         #   print(type(now))        #   <class 'datetime.date'>
 
-        return now > self.varCheck_in and now < self.varCheck_out
+        return now > self.colCheck_in and now < self.colCheck_out
 
     def def_Is_Finished(self):
 
         now = parse_date(timezone.localtime().strftime("%Y-%m-%d"))
-        return now > self.varCheck_out
+        return now > self.colCheck_out
 
     #   True / False String 대신 O,X 로 나타나게 함
     def_In_Progress.boolean = True

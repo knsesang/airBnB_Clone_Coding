@@ -35,14 +35,14 @@ class Command(BaseCommand):
             room_models.clsRoom,
             numbers,
             {
-                "varName": lambda x: seeder.faker.address(),
-                "varHost": lambda x: random.choice(all_users),
-                "varRoom_type": lambda x: random.choice(room_types),
-                "varPrice": lambda x: random.randint(10000, 100000),
-                "varBaths": lambda x: random.randint(1, 5),
-                "varBedrooms": lambda x: random.randint(1, 5),
-                "varBeds": lambda x: random.randint(1, 5),
-                "varGuests": lambda x: random.randint(1, 5),
+                "colName": lambda x: seeder.faker.address(),
+                "colHost": lambda x: random.choice(all_users),
+                "colRoom_type": lambda x: random.choice(room_types),
+                "colPrice": lambda x: random.randint(10000, 100000),
+                "colBaths": lambda x: random.randint(1, 5),
+                "colBedrooms": lambda x: random.randint(1, 5),
+                "colBeds": lambda x: random.randint(1, 5),
+                "colGuests": lambda x: random.randint(1, 5),
             },
         )
 
@@ -76,24 +76,24 @@ class Command(BaseCommand):
 
             for i in range(1, random.randint(2, 4)):
                 room_models.clsPhoto.objects.create(
-                    varCaption=seeder.faker.sentence(),
-                    varRoom=room,
-                    varFile=f"room_photos/{random.randint(1, 50)}.jpg",
+                    colCaption=seeder.faker.sentence(),
+                    colRoom=room,
+                    colFile=f"room_photos/{random.randint(1, 50)}.jpg",
                 )
 
             for a in amenities:
                 magic_number = random.randint(0, len(amenities))
                 if magic_number % 2 == 0:  #   짝수라면 추가
-                    room.varAmenities.add(a)
+                    room.colAmenities.add(a)
 
             for f in facilities:
                 magic_number = random.randint(0, len(facilities))
                 if magic_number % 2 == 0:
-                    room.varFacilities.add(f)
+                    room.colFacilities.add(f)
 
             for r in houserules:
                 magic_number = random.randint(0, len(houserules))
                 if magic_number % 2 == 0:
-                    room.varHouse_rules.add(r)
+                    room.colHouse_rules.add(r)
 
         self.stdout.write(self.style.SUCCESS(f"{numbers} rooms Success"))

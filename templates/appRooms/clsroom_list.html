@@ -15,8 +15,8 @@
     
     {% for room in objRooms  %}
         <h4>
-            <!--    <a href="/appRooms/{{room.pk}}">{{room.varName}} / ${{room.varPrice}}</a>   -->
-            <a href='{% url "appRooms:detail" room.pk   %}'>{{room.varName}} / ${{room.varPrice}}</a>
+            <!--    <a href="/appRooms/{{room.pk}}">{{room.colName}} / ${{room.colPrice}}</a>   -->
+            <a href='{% url "appRooms:detail" room.pk   %}'>{{room.colName}} / ${{room.colPrice}}</a>
         </h4>
     {% endfor %}
 

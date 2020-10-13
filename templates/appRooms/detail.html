@@ -11,13 +11,13 @@
     detail.html<br/>
     
     <div>
-        <h1>{{room.varName}}</h1>
-        <h3>{{room.varDescription}}</h3>
+        <h1>{{room.colName}}</h1>
+        <h3>{{room.colDescription}}</h3>
     </div>
     <div>
-        <h2>By : {{room.varHost.username}}
+        <h2>By : {{room.colHost.username}}
 
-        {% if room.varHost.varSuperhost %}
+        {% if room.colHost.colSuperhost %}
             (superhost)
         {% endif %}
 
@@ -25,21 +25,21 @@
 
         <h3>Amenities</h3>
         <ul>
-            {% for a in room.varAmenities.all %}
+            {% for a in room.colAmenities.all %}
                 <li>{{a}}</li>
             {% endfor %}
         </ul>
 
         <h3>Facilities</h3>
         <ul>
-            {% for a in room.varFacilities.all %}
+            {% for a in room.colFacilities.all %}
                 <li>{{a}}</li>
             {% endfor %}
         </ul>
 
         <h3>House Rules</h3>
         <ul>
-            {% for a in room.varHouse_rules.all  %}
+            {% for a in room.colHouse_rules.all  %}
                 <li>{{a}}</li>
             {% endfor %}
         </ul>

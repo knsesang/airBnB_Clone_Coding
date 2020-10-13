@@ -9,6 +9,8 @@ from django.shortcuts import render, redirect
 
 from django.http import Http404
 
+from django_countries import countries
+
 
 #   class list view 형식 페이징
 #   찾는 파일은 templates/앱이름/클래스이름_list.html 을 자동으로 읽어들임
@@ -18,7 +20,7 @@ class clsHomeView(ListView):
     model = models.clsRoom
     paginate_by = 10
     paginate_orphans = 5
-    ordering = "varCreated"
+    ordering = "colCreated"
     context_object_name = "objRooms"
 
     def get_context_data(self, **kwargs):
@@ -70,15 +72,20 @@ def fn_Search(request):
     #   print(dir(request))
 
     varCity = request.GET.get("txtCity")
-
     #   print(varCity)
-
+    #   varCity = str.capitalize(city)  #   니코 강의 내용
     varCity = varCity.capitalize()  #   DB 데이타는  대문자로 시작하므로
+
+    arrRoom_types = models.clsRoomType.objects.all()
+    print(arrRoom_types)
+    #   <QuerySet [<clsRoomType: Apartment>, <clsRoomType: Bed and breakfast>,...>
 
     return render(
         request,
         "appRooms/search.html",
         {
             "varCity": varCity,
+            "countries": countries,
+            "arrRoom_types": arrRoom_types,
         },
     )

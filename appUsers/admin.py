@@ -16,19 +16,19 @@ class clsCustomUserAdmin(UserAdmin):
             "custom Profile",
             {
                 "fields": (
-                    "varAvatar",
-                    "varGender",
-                    "varBio",
-                    "varBirthdate",
-                    "varLanguage",
-                    "varCurrency",
-                    "varSuperhost",
+                    "colAvatar",
+                    "colGender",
+                    "colBio",
+                    "colBirthdate",
+                    "colLanguage",
+                    "colCurrency",
+                    "colSuperhost",
                 )
             },
         ),
     )
 
-    list_filter = UserAdmin.list_filter + ("varSuperhost",)
+    list_filter = UserAdmin.list_filter + ("colSuperhost",)
 
     list_display = (
         "username",  #   장고 기본 모델에서 불러옴
@@ -36,9 +36,9 @@ class clsCustomUserAdmin(UserAdmin):
         "last_name",  #   장고 기본 모델에서 불러옴
         "email",  #   장고 기본 모델에서 불러옴
         "is_active",  #   장고 기본 모델에서 불러옴
-        "varLanguage",
-        "varCurrency",
-        "varSuperhost",
+        "colLanguage",
+        "colCurrency",
+        "colSuperhost",
         "is_staff",  #   장고 기본 모델에서 불러옴
         "is_superuser",  #   장고 기본 모델에서 불러옴
     )

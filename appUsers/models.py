@@ -50,7 +50,7 @@ class clsUser(AbstractUser):
         (CURRENCY_OTHER, "other"),
     )
 
-    varGender = models.CharField(
+    colGender = models.CharField(
         choices=GENDER_CHOICES,
         default=GENDER_MALE,
         max_length=10,
@@ -58,7 +58,7 @@ class clsUser(AbstractUser):
         blank=True,
     )
 
-    varLanguage = models.CharField(
+    colLanguage = models.CharField(
         choices=LANGUAGE_CHOICES,
         default=LANGUAGE_KOREAN,
         max_length=10,
@@ -66,7 +66,7 @@ class clsUser(AbstractUser):
         blank=True,
     )
 
-    varCurrency = models.CharField(
+    colCurrency = models.CharField(
         choices=CURRENCY_CHOICES,
         default=CURRENCY_KRW,
         max_length=10,
@@ -74,7 +74,7 @@ class clsUser(AbstractUser):
         blank=True,
     )
 
-    varAvatar = models.ImageField(null=True, blank=True, upload_to="avatars")
-    varBio = models.TextField(default="", blank=True)
-    varBirthdate = models.DateTimeField(null=True, blank=True)
-    varSuperhost = models.BooleanField(default=False)
+    colAvatar = models.ImageField(null=True, blank=True, upload_to="avatars")
+    colBio = models.TextField(default="", blank=True)
+    colBirthdate = models.DateTimeField(null=True, blank=True)
+    colSuperhost = models.BooleanField(default=False)

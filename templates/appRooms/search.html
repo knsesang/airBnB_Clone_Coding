@@ -5,14 +5,48 @@
     Search
 {% endblock page_title %}
 
+{% block search-bar %}
+{% endblock search-bar %}
 
 {% block content %}
     
     search.html<br/>
 
-    <h2>Search</h2>
-
     <h2>Searching by {{varCity}}</h2>
+
+    
+    <form method="get" action="{%    url 'appRooms:search'    %}">
+        <div>
+            <label for='city'>City</label>
+            <input name="txtCity" id="txtCity" placeholder="search by city" />
+        </div>
+
+        <div>
+        
+            <label for="country">Country</label>
+
+            <select name="selCountry" id="selCountry">
+                {% for country in countries %}
+                    <option value="{{country.code}}">{{country.name}}</option>
+                {% endfor %}
+            </select>
+
+        </div>
+            
+        <div>
+            <label for="Room Types">Room Types</label>
+            <select name="selRoom_type" id="selRoom_type">
+                {% for room_type in arrRoom_types %}
+                    <option value="{{room_type.pk}}">{{room_type.colName}}</option>
+                {% endfor %}
+            </select>
+
+        </div>
+
+        
+            <button>Search</button>
+
+    </form>
     
     
 {% endblock content %} 

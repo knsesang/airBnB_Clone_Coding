@@ -30,20 +30,20 @@ class Command(BaseCommand):
             reservation_models.clsReservation,
             numbers,
             {
-                "varStatus": lambda x: random.choice(
+                "colStatus": lambda x: random.choice(
                     [
                         "pending",
                         "confirmed",
                         "canceled",
                     ]
                 ),
-                "varGuest": lambda x: random.choice(users),
-                "varRoom": lambda x: random.choice(rooms),
-                #   "varCheck_in": lambda x: datetime.now(),    #   미국시간 불러오는 문제가 있음
-                "varCheck_in": lambda x: timezone.localtime(),
+                "colGuest": lambda x: random.choice(users),
+                "colRoom": lambda x: random.choice(rooms),
+                #   "colCheck_in": lambda x: datetime.now(),    #   미국시간 불러오는 문제가 있음
+                "colCheck_in": lambda x: timezone.localtime(),
                 #   체크 아웃 예약일은 3~25 일 이후로 잡음
-                #   "varCheck_out": lambda x: datetime.now()            #   미국시간 불러오는 문제가 있음
-                "varCheck_out": lambda x: timezone.localtime()
+                #   "colCheck_out": lambda x: datetime.now()            #   미국시간 불러오는 문제가 있음
+                "colCheck_out": lambda x: timezone.localtime()
                 + timedelta(days=random.randint(3, 25)),
             },
         )
