@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 from django.views.generic import ListView, DetailView
 from django.utils import timezone
 from . import models
@@ -71,7 +72,7 @@ def fn_Search(request):
     #   <WSGIRequest: GET '/rooms/search/'>
     #   print(dir(request))
 
-    varCity = request.GET.get("txtCity")
+    varCity = request.GET.get("txtCity", "Anywhere")
     #   print(varCity)
     #   varCity = str.capitalize(city)  #   니코 강의 내용
     varCity = varCity.capitalize()  #   DB 데이타는  대문자로 시작하므로
@@ -82,7 +83,8 @@ def fn_Search(request):
     #   사용자가 선택한 room type pk
     varRoom_type = int(request.GET.get("selRoom_type", 0))
     varPrice = int(request.GET.get("txtPrice", 0))
-    varGuests = int(request.GET.get("txtPrice", 0))
+
+    varGuests = int(request.GET.get("txtGuests", 0))
     varBedrooms = int(request.GET.get("txtBedrooms", 0))
     varBeds = int(request.GET.get("txtBeds", 0))
     varBaths = int(request.GET.get("txtBaths", 0))
@@ -138,11 +140,23 @@ def fn_Search(request):
         "arrHouse_rules": arrHouse_rules,
     }
 
+    filter_args = {}
+    if varCity != "Anywhere":
+        filter_args["colCity__startswith"] = varCity
+
+    filter_args["colCountry"] = varCountry
+
+    if varRoom_type != 0:
+        filter_args["colRoom_type__pk"] = varRoom_type
+
+    arrRooms = models.clsRoom.objects.filter(**filter_args)
+
     return render(
         request,
         "appRooms/search.html",
         {
             **form,
             **choices,
+            "arrRooms": arrRooms,
         },
     )

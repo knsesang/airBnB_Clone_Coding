@@ -171,5 +171,11 @@
 
     </form>
     
+    <h3>Results</h3>
+
     
+    {% for room in arrRooms %}
+        <h3>{{room.colName}}</h3>
+    {% endfor %}
+        
 {% endblock content %} 
