@@ -76,16 +76,38 @@ def fn_Search(request):
     #   varCity = str.capitalize(city)  #   니코 강의 내용
     varCity = varCity.capitalize()  #   DB 데이타는  대문자로 시작하므로
 
+    #   사용자가 선택한 국가 코드
+    varCountry = request.GET.get("selCountry", "KR")
+
+    #   사용자가 선택한 room type pk
+    varRoom_type = int(request.GET.get("selRoom_type", 0))
+
     arrRoom_types = models.clsRoomType.objects.all()
-    print(arrRoom_types)
+    #   print(arrRoom_types)
     #   <QuerySet [<clsRoomType: Apartment>, <clsRoomType: Bed and breakfast>,...>
+
+    #   사용자가 선택한 web form 값들 모음
+    form = {
+        "varCity": varCity,
+        "varCountry": varCountry,
+        "varRoom_type": varRoom_type,
+    }
+
+    print("varCity : " + varCity)
+    print("varCountry : " + varCountry)
+    print(f"varRoom_type : {varRoom_type}")
+
+    #   사용자에게 전달되는 선택해야 할 값들
+    choices = {
+        "countries": countries,  # 장고 국가 선택 앱
+        "arrRoom_types": arrRoom_types,
+    }
 
     return render(
         request,
         "appRooms/search.html",
         {
-            "varCity": varCity,
-            "countries": countries,
-            "arrRoom_types": arrRoom_types,
+            **form,
+            **choices,
         },
     )

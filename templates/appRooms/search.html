@@ -18,7 +18,7 @@
     <form method="get" action="{%    url 'appRooms:search'    %}">
         <div>
             <label for='city'>City</label>
-            <input name="txtCity" id="txtCity" placeholder="search by city" />
+            <input value={{varCity}} name="txtCity" id="txtCity" placeholder="search by city" />
         </div>
 
         <div>
@@ -27,7 +27,9 @@
 
             <select name="selCountry" id="selCountry">
                 {% for country in countries %}
-                    <option value="{{country.code}}">{{country.name}}</option>
+                    <option value="{{country.code}}"    {% if country.code == varCountry %} selected    {% endif %} >
+                        {{country.name}}
+                    </option>
                 {% endfor %}
             </select>
 
@@ -36,8 +38,12 @@
         <div>
             <label for="Room Types">Room Types</label>
             <select name="selRoom_type" id="selRoom_type">
+                <option value="0"   {% if varRoom_type == 0 %} selected    {% endif %} >any Kind</option>
+                
                 {% for room_type in arrRoom_types %}
-                    <option value="{{room_type.pk}}">{{room_type.colName}}</option>
+                    <option value="{{room_type.pk}}" {% if room_type.pk == varRoom_type %} selected    {% endif %} >
+                    {{room_type.colName}}
+                    </option>
                 {% endfor %}
             </select>
 
