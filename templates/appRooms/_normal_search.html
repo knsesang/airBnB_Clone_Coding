@@ -1,0 +1,185 @@
+<!-- 
+    수작업 방식의 fn_normal_search용 html
+-->
+
+{% extends "base.html" %}
+
+{% block page_title %}
+    Search
+{% endblock page_title %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+    
+    search.html<br/>
+
+    <h2>Searching by {{varCity}}</h2>
+
+    
+    <form method="get" action="{%    url 'appRooms:search'    %}">
+        <div>
+            <label for='city'>City</label>
+            <input value={{varCity}} name="txtCity" id="txtCity" placeholder="search by city" />
+        </div>
+
+        <div>
+        
+            <label for="country">Country</label>
+
+            <select name="selCountry" id="selCountry">
+                {% for country in countries %}
+                    <option value="{{country.code}}"    {% if country.code == varCountry %} selected    {% endif %} >
+                        {{country.name}}
+                    </option>
+                {% endfor %}
+            </select>
+
+        </div>
+            
+        <div>
+            <label for="Room Types">Room Types</label>
+            <select name="selRoom_type" id="selRoom_type">
+                <option value="0"   {% if varRoom_type == 0 %} selected    {% endif %} >any Kind</option>
+                
+                {% for room_type in arrRoom_types %}
+                    <option value="{{room_type.pk}}" {% if room_type.pk == varRoom_type %} selected    {% endif %} >
+                    {{room_type.colName}}
+                    </option>
+                {% endfor %}
+            </select>
+
+        </div>
+
+        <div>
+            <label for="price">Price</label>
+            <input type=number value={{varPrice}} name="txtPrice" id="txtPrice" placeholder="search by price" />
+        </div>
+
+
+        <div>
+            <label for="guests">Guests</label>
+            <input type=number value={{varGuests}} name="txtGuests" id="txtGuests" placeholder="search by Guests" />
+        </div>
+
+        <div>
+            <label for="Bedrooms">Bedrooms</label>
+            <input type=number value={{varBedrooms}} name="txtBedrooms" id="txtBedrooms" placeholder="search by Bedrooms" />
+        </div>
+
+        <div>
+            <label for="beds">Beds</label>
+            <input type=number value={{varBeds}} name="txtBeds" id="txtBeds" placeholder="search by Beds" />
+        </div>
+
+        <div>
+            <label for="baths">Baths</label>
+            <input type=number value={{varBaths}} name="txtBaths" id="txtBaths" placeholder="search by Baths" />
+        </div>
+
+        <div>
+            <label for="instant_book_only">Instant book only?</label>
+            <input  type=checkbox name="chkInstant_book_only" 
+                    id="chkInstant_book_only" placeholder="search by Instant book only" 
+                    {% if varInstant_book_only %}
+                        checked
+                    {% endif %}
+                    />
+        </div>
+        
+        
+        <div>
+            <label for="superhost_only">Superhost only?</label>
+            <input  type=checkbox name="chkSuperhost_only" 
+                    id="chkSuperhost_only" placeholder="search by Superhost only" 
+                     {% if varSuperhost_only %}
+                        checked
+                    {% endif %}
+                    />
+        </div>
+
+        <div>
+            <h3>Amenities</h3>
+
+            <ul>
+                {% for amenity in arrAmenities %}
+                    <li>
+                        <label for=a_{{amenity.pk}}>{{amenity.colName}}</label>
+
+                        <!--    slugify : 문자형으로 만들어줌 -->
+
+                        <input  value={{amenity.pk}} 
+                                type="checkbox" 
+                                id="a_{{amenity.pk}}" 
+                                name="chkAmenities" 
+                                
+                                {% if amenity.pk|slugify in varAmenities %}
+                                    checked
+                                {% endif %}
+                                    
+                                />
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        
+        <div>
+            <h3>Facilities</h3>
+
+            <ul>
+                {% for facility in arrFacilities %}
+                    <li>
+                        <label for=f_{{facility.pk}}>{{facility.colName}}</label>
+                        <input  value={{facility.pk}} 
+                                type="checkbox" 
+                                id="f_{{facility.pk}}" 
+                                name="chkFacilities" 
+                                
+                                {% if facility.pk|slugify in varFacilities %}
+                                    checked
+                                {% endif %}
+                                />
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <div>
+            <h3>House rules</h3>
+
+            <ul>
+                {% for houserule in arrHouse_rules %}
+                    <li>
+                        <label for=h_{{houserule.pk}}>{{houserule.colName}}</label>
+                        <input  value={{houserule.pk}} 
+                                type="checkbox" 
+                                id="h_{{houserule.pk}}" 
+                                name="chkHouse_rules" 
+                                
+                                {% if houserule.pk|slugify in varHouse_rules %}
+                                    checked
+                                {% endif %}
+
+                                />
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        
+        <button>Search</button>
+
+    </form>
+    
+    <h3>Results</h3>
+
+    
+    {% for room in arrRooms %}
+        <h3>{{room.colName}}</h3>
+    {% endfor %}
+        
+{% endblock content %} 

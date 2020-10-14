@@ -2,6 +2,7 @@ from django.db.models.query import QuerySet
 from django.views.generic import ListView, DetailView
 from django.utils import timezone
 from . import models
+from . import forms  #   form API 사용하기 위해서
 
 #   def 함수 사용시 필요
 from django.shortcuts import render, redirect
@@ -66,8 +67,10 @@ def fn_Room_Detail(request, pk):
         raise Http404()
 
 
-#   검색
-def fn_Search(request):
+#   수작업 방식의 검색. 강의 ~ #13.6.
+#   fn_Search() → fn_nomal_Search() 로 이름 변경
+#   search.html → _search.html 로 이름 변경
+def fn_normal_Search(request):
     # print(request)
     #   <WSGIRequest: GET '/rooms/search/'>
     #   print(dir(request))
@@ -186,7 +189,7 @@ def fn_Search(request):
 
     arrRooms = models.clsRoom.objects.filter(**filter_args)
 
-    print(filter_args)
+    #   print(filter_args)
 
     return render(
         request,
@@ -195,5 +198,18 @@ def fn_Search(request):
             **form,
             **choices,
             "arrRooms": arrRooms,
+        },
+    )
+
+
+#   검색 form API 사용
+def fn_Search(request):
+    form = forms.clsSearchform()
+
+    return render(
+        request,
+        "appRooms/search.html",
+        {
+            "form": form,
         },
     )
