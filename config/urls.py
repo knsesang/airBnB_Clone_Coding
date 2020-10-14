@@ -24,6 +24,7 @@ urlpatterns = [
     path("", include("appCore.urls", namespace="appCore")),
     #   path("users", include("appUsers.urls", namespace="appUsers")),
     path("rooms/", include("appRooms.urls", namespace="appRooms")),
+    path("users/", include("appUsers.urls", namespace="appUsers")),
     path("admin/", admin.site.urls),
 ]
 
