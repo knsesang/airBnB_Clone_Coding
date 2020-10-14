@@ -204,7 +204,7 @@ def fn_normal_Search(request):
 
 #   검색 form API 사용
 def fn_Search(request):
-    form = forms.clsSearchform()
+    form = forms.clsSearchForm()
 
     return render(
         request,
