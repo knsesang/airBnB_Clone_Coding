@@ -13,6 +13,12 @@ from django.http import Http404
 
 from django_countries import countries
 
+#   clsSearchView 를 위해서 추가
+from django.views.generic import View
+
+#   clsSearchView 페이징을 위해서 추가
+from django.core.paginator import Paginator
+
 
 #   class list view 형식 페이징
 #   찾는 파일은 templates/앱이름/클래스이름_list.html 을 자동으로 읽어들임
@@ -203,8 +209,86 @@ def fn_normal_Search(request):
 
 
 #   검색 form API 사용
+#   form API를 쓰면 변수명이 받아들일 변수명으로 자동 지정이 된다
 def fn_Search(request):
-    form = forms.clsSearchForm()
+
+    varCountry = request.GET.get("varCountry")
+    print(varCountry)
+
+    if varCountry:
+        form = forms.clsSearchForm(request.GET)
+        if form.is_valid():
+
+            varCity = form.cleaned_data.get("varCity")
+            varCountry = form.cleaned_data.get("varCountry")
+            varRoom_type = form.cleaned_data.get("varRoom_type")
+
+            #   공백이면 None 으로 날아온다
+            varPrice = form.cleaned_data.get("varPrice")
+            varGuests = form.cleaned_data.get("varGuests")
+            varBedrooms = form.cleaned_data.get("varBedrooms")
+            varBeds = form.cleaned_data.get("varBeds")
+            varBaths = form.cleaned_data.get("varBaths")
+            varInstant_book = form.cleaned_data.get("varInstant_book")
+
+            #   선택안하면 False
+            varSuperhost = form.cleaned_data.get("varSuperhost")
+
+            #   선택안하면 <QuerySet []>
+            #   선택하면 <QuerySet [<clsAmenity: Alarm Clock>, <clsAmenity: Balcony>]>
+            varAmenities = form.cleaned_data.get("varAmenities")
+
+            varFacilities = form.cleaned_data.get("varFacilities")
+            varHouse_rules = form.cleaned_data.get("varHouse_rules")
+
+            filter_args = {}
+
+            if varCity != "Anywhere":
+                filter_args["colCity__startswith"] = varCity
+
+            filter_args["colCountry"] = varCountry
+
+            if varRoom_type is not None:
+                filter_args["colRoom_type"] = varRoom_type
+
+            if varPrice is not None:
+                filter_args["colPrice__lte"] = varPrice
+
+            if varGuests is not None:
+                filter_args["colGuests__gte"] = varGuests
+
+            if varBedrooms is not None:
+                filter_args["colBedrooms__gte"] = varBedrooms
+
+            if varBeds is not None:
+                filter_args["colBeds__gte"] = varBeds
+
+            if varBaths is not None:
+                filter_args["colBaths__gte"] = varBaths
+
+            if varInstant_book is True:
+                filter_args["colInstant_book"] = True
+
+            if varSuperhost is True:
+                filter_args["colHost_colSuperhost"] = True
+
+            for amenity in varAmenities:
+                filter_args["colAmenities"] = amenity
+
+            for facility in varFacilities:
+                filter_args["colFacilities"] = facility
+
+            for house_rules in varHouse_rules:
+                filter_args["colHouse_rules"] = house_rules
+
+            arrRooms = models.clsRoom.objects.filter(**filter_args)
+
+            #   print(form.cleaned_data)
+            #   {'varRoom_types': None, 'varCountry': 'SL', 'varCity': 'Anywhere',
+            #   'varAmenities': <QuerySet []>, 'varFacilities': <QuerySet []>,.......}
+
+    else:
+        form = forms.clsSearchForm
 
     return render(
         request,
@@ -213,3 +297,106 @@ def fn_Search(request):
             "form": form,
         },
     )
+
+
+#   검색 form API + class view 사용
+class clsSearchView(View):
+    def get(self, request):
+
+        varCountry = request.GET.get("varCountry")
+        print(varCountry)
+
+        if varCountry:
+            form = forms.clsSearchForm(request.GET)
+            if form.is_valid():
+
+                varCity = form.cleaned_data.get("varCity")
+                varCountry = form.cleaned_data.get("varCountry")
+                varRoom_type = form.cleaned_data.get("varRoom_type")
+
+                #   공백이면 None 으로 날아온다
+                varPrice = form.cleaned_data.get("varPrice")
+                varGuests = form.cleaned_data.get("varGuests")
+                varBedrooms = form.cleaned_data.get("varBedrooms")
+                varBeds = form.cleaned_data.get("varBeds")
+                varBaths = form.cleaned_data.get("varBaths")
+                varInstant_book = form.cleaned_data.get("varInstant_book")
+
+                #   선택안하면 False
+                varSuperhost = form.cleaned_data.get("varSuperhost")
+
+                #   선택안하면 <QuerySet []>
+                #   선택하면 <QuerySet [<clsAmenity: Alarm Clock>, <clsAmenity: Balcony>]>
+                varAmenities = form.cleaned_data.get("varAmenities")
+
+                varFacilities = form.cleaned_data.get("varFacilities")
+                varHouse_rules = form.cleaned_data.get("varHouse_rules")
+
+                filter_args = {}
+
+                if varCity != "Anywhere":
+                    filter_args["colCity__startswith"] = varCity
+
+                filter_args["colCountry"] = varCountry
+
+                if varRoom_type is not None:
+                    filter_args["colRoom_type"] = varRoom_type
+
+                if varPrice is not None:
+                    filter_args["colPrice__lte"] = varPrice
+
+                if varGuests is not None:
+                    filter_args["colGuests__gte"] = varGuests
+
+                if varBedrooms is not None:
+                    filter_args["colBedrooms__gte"] = varBedrooms
+
+                if varBeds is not None:
+                    filter_args["colBeds__gte"] = varBeds
+
+                if varBaths is not None:
+                    filter_args["colBaths__gte"] = varBaths
+
+                if varInstant_book is True:
+                    filter_args["colInstant_book"] = True
+
+                if varSuperhost is True:
+                    filter_args["colHost_colSuperhost"] = True
+
+                for amenity in varAmenities:
+                    filter_args["colAmenities"] = amenity
+
+                for facility in varFacilities:
+                    filter_args["colFacilities"] = facility
+
+                for house_rules in varHouse_rules:
+                    filter_args["colHouse_rules"] = house_rules
+
+                #   qs = queryset
+                qs = models.clsRoom.objects.filter(**filter_args).order_by(
+                    "-colCreated"
+                )
+
+                arrPaginator = Paginator(qs, 10, orphans=5)
+                varPage = request.GET.get("varPage", 1)
+                arrRooms = arrPaginator.get_page(varPage)
+
+                return render(
+                    request,
+                    "appRooms/search.html",
+                    {
+                        "form": form,
+                        "arrRooms": arrRooms,
+                    },
+                )
+
+        else:
+            form = forms.clsSearchForm
+
+        return render(
+            request,
+            "appRooms/search.html",
+            {
+                "form": form,
+            },
+        )
